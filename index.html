@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en" data-notes="on">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marcos Feole | Data Scientist</title>
+<meta name="description" content="Marcos Feole is a data scientist with 8+ years of experience in statistics, machine learning, and generative AI. MS in Statistics and Analytics (UIUC) and MS in Physics (Balseiro Institute).">
+<meta name="theme-color" content="#140709">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238f1d2c'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='30' fill='%23fbeff0'%3EMF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap">
+<style>
+  /* ============================================================
+     THEME TOKENS. Dark red is the default; light is optional.
+     ============================================================ */
+  :root {
+    --bg: #140709;
+    --bg-2: #1c0b0e;
+    --card: #221013;
+    --ink: #f5e9ea;
+    --muted: #b99ea2;
+    --faint: #7d6165;
+    --line: #3b1c21;
+    --accent: #e0525f;
+    --accent-2: #ff8a8f;
+    --accent-deep: #8f1d2c;
+    --accent-ink: #140709;
+    --accent-soft: rgba(224, 82, 95, 0.12);
+    --glow: rgba(143, 29, 44, 0.55);
+    --note-a-lot: #f0a13a;
+    --note-a-little: #7fb8d8;
+    --note-bg: rgba(240, 161, 58, 0.08);
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --radius: 14px;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #fbf6f6;
+    --bg-2: #f5ecec;
+    --card: #ffffff;
+    --ink: #22090d;
+    --muted: #6d5256;
+    --faint: #9a8084;
+    --line: #ead8da;
+    --accent: #9e1f2f;
+    --accent-2: #c2313f;
+    --accent-deep: #7a1523;
+    --accent-ink: #fbf6f6;
+    --accent-soft: rgba(158, 31, 47, 0.08);
+    --glow: rgba(158, 31, 47, 0.18);
+    --note-a-lot: #b86400;
+    --note-a-little: #2a6f97;
+    --note-bg: rgba(184, 100, 0, 0.06);
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(60rem 30rem at 85% -10%, var(--glow), transparent 70%),
+      radial-gradient(40rem 25rem at -10% 20%, var(--accent-soft), transparent 70%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent-2); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: var(--accent-deep); color: #fff; }
+
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar .wrap { display: flex; align-items: center; gap: 1.25rem; min-height: 3.75rem; }
+  .brand {
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
+  }
+  .brand span { color: var(--accent); font-style: italic; }
+  .nav { display: flex; gap: 0.2rem; margin-left: auto; overflow-x: auto; scrollbar-width: none; font-size: 0.92rem; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a {
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    padding: 0.35rem 0.7rem; border-radius: 999px; transition: color .2s, background .2s;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a.active { color: var(--ink); background: var(--accent-soft); }
+  .icon-btn {
+    font: inherit; font-size: 0.85rem; line-height: 1; color: var(--muted);
+    background: none; border: 1px solid var(--line); border-radius: 999px;
+    height: 2.2rem; min-width: 2.2rem; padding: 0 0.7rem; cursor: pointer; flex: none;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+  .icon-btn:hover { color: var(--accent-2); border-color: var(--accent); }
+  .icon-btn svg { width: 1rem; height: 1rem; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; padding: 5rem 0 4rem; }
+  .avatar {
+    position: relative; width: 13rem; height: 13rem; border-radius: 50%;
+    background: linear-gradient(145deg, var(--accent-deep), #3a0a12);
+    color: #fbeff0; display: grid; place-items: center;
+    font-family: var(--serif); font-size: 4.2rem; font-style: italic;
+    box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--line), 0 30px 80px -20px var(--glow);
+  }
+  .avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 0.75rem;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.8rem, 7vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 1rem;
+  }
+  .hero h1 em { color: var(--accent); }
+  .lede { font-family: var(--serif); font-size: 1.35rem; line-height: 1.5; margin: 0 0 1.5rem; max-width: 36rem; color: var(--ink); }
+  .facts { list-style: none; margin: 0 0 1.75rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .facts li {
+    font-size: 0.88rem; color: var(--muted); border: 1px solid var(--line);
+    padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--bg-2);
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    text-decoration: none; color: var(--ink); border: 1px solid var(--line); background: var(--card);
+    padding: 0.5rem 1rem; border-radius: 999px; font-weight: 500; font-size: 0.93rem;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .btn svg { width: 1rem; height: 1rem; }
+  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* Stats strip */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
+  .stat { background: var(--bg-2); padding: 1.2rem 1.25rem; }
+  .stat b { display: block; font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--accent); line-height: 1.1; }
+  .stat span { font-size: 0.85rem; color: var(--muted); }
+
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+  section { padding: 4.5rem 0 1rem; }
+  .sec-head { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 2rem; flex-wrap: wrap; }
+  .sec-num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
+  h2 {
+    font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.4rem); line-height: 1.15; font-weight: 500;
+    margin: 0; letter-spacing: -0.01em;
+  }
+  .sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); min-width: 2rem; align-self: center; }
+  h3 { font-size: 1.1rem; line-height: 1.35; font-weight: 600; margin: 0; }
+  p { margin: 0 0 1rem; }
+  .prose { max-width: 44rem; }
+  .prose p { font-family: var(--serif); font-size: 1.15rem; }
+  .prose strong { font-weight: 600; color: var(--ink); }
+
+  /* Focus areas (About) */
+  .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.9rem; margin: 1.75rem 0; }
+  .area { border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; background: var(--card); }
+  .area h3 { font-size: 0.98rem; color: var(--accent-2); margin-bottom: 0.3rem; }
+  .area p { margin: 0; font-size: 0.92rem; color: var(--muted); }
+
+  /* Cards (featured work / projects) */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.1rem; }
+  .card {
+    position: relative; display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.4rem; transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .card:hover { border-color: var(--accent-deep); transform: translateY(-3px); box-shadow: 0 18px 40px -24px var(--glow); }
+  .card .kicker { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .card p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; margin: 0.25rem 0 0; padding: 0; }
+  .tags li { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); background: var(--bg-2); border: 1px solid var(--line); padding: 0.1rem 0.5rem; border-radius: 6px; }
+  .card .more { margin-top: 1rem; font-size: 0.9rem; font-weight: 500; }
+
+  /* Filters */
+  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin: 0 0 2rem; font-size: 0.9rem; }
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem; background: var(--bg-2); }
+  .seg button {
+    font: inherit; color: var(--muted); background: none; border: 0; cursor: pointer;
+    padding: 0.3rem 0.95rem; border-radius: 999px;
+  }
+  .seg button:hover { color: var(--ink); }
+  .seg button[aria-pressed="true"] { background: var(--accent-deep); color: #fff; }
+  .legend { color: var(--faint); font-size: 0.85rem; }
+
+  /* Timeline */
+  .tl { list-style: none; margin: 0; padding: 0; position: relative; }
+  .tl::before { content: ""; position: absolute; top: 0.6rem; bottom: 1rem; width: 2px; background: linear-gradient(var(--accent-deep), var(--line)); left: calc(9.5rem + 1.25rem - 1px); }
+  .tl > li { display: grid; grid-template-columns: 9.5rem 1fr; column-gap: 2.5rem; position: relative; padding-bottom: 2.25rem; }
+  .tl > li[hidden] { display: none; }
+  .tl > li::after {
+    content: ""; position: absolute; top: 0.45rem; left: calc(9.5rem + 1.25rem - 7px);
+    width: 14px; height: 14px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--bg);
+  }
+  .tl > li[data-type="academia"]::after { background: var(--bg); border: 2px solid var(--accent); }
+  .when { text-align: right; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); padding-top: 0.25rem; line-height: 1.5; }
+  .org { font-size: 0.93rem; color: var(--accent-2); margin: 0.1rem 0 0.6rem; }
+  .tl p { margin: 0 0 0.6rem; max-width: 40rem; color: var(--muted); }
+  .tl ul.impact { margin: 0 0 0.6rem; padding-left: 1.1rem; color: var(--muted); max-width: 40rem; }
+  .tl ul.impact li::marker { color: var(--accent); }
+
+  /* Publications / talks list */
+  .pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .pubs > li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
+  .pubs > li[hidden] { display: none; }
+  .pubs .year { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); padding-top: 0.2rem; }
+  .pubs h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
+  .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0.5rem; }
+  .pubs .meta i { color: var(--ink); }
+  .badge { display: inline-block; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.08rem 0.45rem; border-radius: 5px; border: 1px solid var(--accent-deep); color: var(--accent-2); margin-right: 0.4rem; vertical-align: 0.15em; }
+  .res { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .res a { font-family: var(--mono); font-size: 0.75rem; text-decoration: none; color: var(--muted); border: 1px solid var(--line); padding: 0.12rem 0.55rem; border-radius: 6px; }
+  .res a:hover { color: var(--accent-2); border-color: var(--accent); }
+
+  /* Education */
+  .edu { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.1rem; list-style: none; margin: 0; padding: 0; }
+  .edu li { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; border-top: 3px solid var(--accent-deep); }
+  .edu .when { text-align: left; margin-bottom: 0.4rem; padding: 0; }
+  .edu h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
+  .edu p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.93rem; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: 1.1rem; }
+  .skill { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem 1.3rem; }
+  .skill h3 { font-size: 0.8rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.75rem; font-weight: 500; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
+  .chips li { font-size: 0.88rem; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--accent-soft); color: var(--ink); border: 1px solid transparent; }
+  .chips li.strong { border-color: var(--accent); }
+  .skill p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+
+  /* Contact */
+  .contact {
+    border: 1px solid var(--accent-deep); border-radius: calc(var(--radius) + 6px); padding: 2.5rem;
+    background: radial-gradient(40rem 20rem at 100% 0%, var(--glow), transparent 70%), var(--card);
+  }
+  .contact h2 { margin-bottom: 0.75rem; }
+  .contact p { color: var(--muted); max-width: 36rem; font-family: var(--serif); font-size: 1.15rem; }
+
+  footer { padding: 3rem 0 3rem; margin-top: 4rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--faint); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  footer a { color: var(--muted); }
+
+  /* Reveal on scroll */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+  }
+
+  /* ============================================================
+     REVIEW NOTES: the "please improve this" markers.
+     Toggle them with the "Notes" button, or remove
+     data-notes="on" from <html> before publishing.
+     ============================================================ */
+  .note {
+    display: none; position: relative;
+    border: 1px dashed var(--note-a-lot); background: var(--note-bg);
+    border-radius: 10px; padding: 0.85rem 1rem 0.85rem 1rem; margin: 0 0 1.5rem;
+    font-size: 0.9rem; line-height: 1.55; color: var(--ink);
+  }
+  html[data-notes="on"] .note { display: block; }
+  .note::before {
+    content: "✎ Improve a lot"; display: inline-block; margin-bottom: 0.35rem;
+    font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--bg); background: var(--note-a-lot); padding: 0.1rem 0.5rem; border-radius: 4px;
+  }
+  .note.little { border-color: var(--note-a-little); background: color-mix(in srgb, var(--note-a-little) 7%, transparent); }
+  .note.little::before { content: "✎ Improve a little"; background: var(--note-a-little); }
+  .note ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
+  .note li { margin: 0.15rem 0; }
+  .note code { font-family: var(--mono); font-size: 0.82rem; }
+  html[data-notes="on"] .placeholder { outline: 1px dashed var(--note-a-lot); outline-offset: 4px; }
+  #notes-toggle[aria-pressed="true"] { color: var(--note-a-lot); border-color: var(--note-a-lot); }
+
+  /* ============================================================
+     SMALL SCREENS
+     ============================================================ */
+  @media (max-width: 48rem) {
+    .bar .wrap { flex-wrap: wrap; padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 0.4rem 0.6rem; }
+    .brand { order: 1; margin-right: auto; }
+    .icon-btn { order: 2; }
+    .nav { order: 3; width: 100%; margin: 0 -0.7rem; }
+    html { scroll-padding-top: 7rem; }
+    .hero { grid-template-columns: 1fr; padding: 2.5rem 0 2.5rem; gap: 1.75rem; }
+    .avatar { width: 8rem; height: 8rem; font-size: 2.6rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .tl { padding-left: 1.6rem; }
+    .tl::before { left: 6px; }
+    .tl > li { grid-template-columns: 1fr; }
+    .tl > li::after { left: calc(-1.6rem); }
+    .when { text-align: left; padding-top: 0; margin-bottom: 0.2rem; }
+    .pubs > li { grid-template-columns: 1fr; gap: 0.25rem; }
+    .contact { padding: 1.75rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Inline SVG icons, referenced with <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
+  <symbol id="i-scholar" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zm-6.18 9.1v4L12 20l6.18-3.9v-4L12 16l-6.18-3.9z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">Marcos <span>Feole</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="icon-btn" id="notes-toggle" type="button" aria-pressed="true" title="Show or hide the review notes">✎ Notes</button>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch between dark and light theme" title="Switch theme"><svg><use href="#i-sun"/></svg></button>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <!-- ========================= HERO ========================= -->
+  <div class="hero">
+    <!-- To use a photo: replace "MF" with <img src="photo.jpg" alt="Marcos Feole"> -->
+    <div class="avatar" role="img" aria-label="Marcos Feole">MF</div>
+    <div>
+      <p class="eyebrow">Data Scientist · Statistician · Physicist</p>
+      <h1>Marcos <em>Feole</em></h1>
+      <p class="lede">I build statistical, machine learning, and generative AI systems that turn messy data into better decisions.</p>
+      <ul class="facts">
+        <li>Buenos Aires, Argentina</li>
+        <li>MS Statistics, UIUC (Fulbright)</li>
+        <li>MS Physics, Balseiro Institute</li>
+      </ul>
+      <div class="links">
+        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
+        <a class="btn placeholder" href="https://github.com/mfeole" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
+        <a class="btn placeholder" href="#" rel="noopener"><svg><use href="#i-scholar"/></svg>Scholar</a>
+        <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Newsletter</a>
+        <a class="btn placeholder" href="cv.pdf"><svg><use href="#i-doc"/></svg>CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note little">
+    <strong>Hero.</strong> Good base, but:
+    <ul>
+      <li>Replace the "MF" initials with a real, well-lit photo (square, at least 600&times;600 px, saved as <code>photo.jpg</code>).</li>
+      <li>Check the GitHub link, add your Google Scholar / ORCID / ResearchGate link (or delete that button), and upload a <code>cv.pdf</code> next to this file.</li>
+      <li>Check the numbers in the stats strip below; swap any of them for a stronger one (e.g. models in production, reports published, people trained).</li>
+      <li>Consider a sharper one-line value proposition: what problem you solve and for whom (e.g. "GenAI and ML for health, public policy, and finance").</li>
+    </ul>
+  </div>
+
+  <div class="stats reveal">
+    <div class="stat"><b>8+</b><span>years in data science</span></div>
+    <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
+    <div class="stat"><b>6</b><span>industries: health, policy, finance, CX, media, research</span></div>
+    <div class="stat"><b>3</b><span>languages: Spanish, English, German</span></div>
+  </div>
+
+  <!-- ========================= ABOUT ========================= -->
+  <section id="about" class="reveal">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+
+    <div class="note little">
+      <strong>About.</strong> The content is solid, but it was a long wall of text. I shortened it and moved the domain list into the cards below. Still to do:
+      <ul>
+        <li>Open with one concrete achievement (a number, a result, a client impact) instead of a general statement.</li>
+        <li>Say in one sentence what kind of role or project you are looking for now.</li>
+      </ul>
+    </div>
+
+    <div class="prose">
+      <p>I'm a data scientist with 8+ years of experience turning data into models and knowledge for better decision-making. I combine <strong>mathematical, statistical, and computational modeling</strong> with hands-on <strong>engineering</strong>, and I care about shipping tools that work in production.</p>
+      <p>My recent work centers on <strong>generative AI</strong>: LLMs, retrieval-augmented generation (RAG), agents, and chatbots that automate internal processes, uncover inefficiencies, and put software to the test. My path is diverse by design: at every crossroads I chose the project that interested me most, and the common thread has always been data, machine learning, and AI.</p>
+      <p>Beyond work, I meditate, play guitar, read widely, and write essays in my newsletter, <a href="https://navegarte.substack.com/" rel="noopener">Navegarte</a>.</p>
+    </div>
+
+    <div class="areas">
+      <div class="area"><h3>Generative AI</h3><p>LLMs, RAG, agents, and chatbots for process automation and QA.</p></div>
+      <div class="area"><h3>Economics research</h3><p>ML with Complexity Economics (Hidalgo &amp; Hausmann) and Ergodicity Economics (Peters &amp; Adamou).</p></div>
+      <div class="area"><h3>AI safety &amp; policy</h3><p>Protocols and recommendations for public-sector clients.</p></div>
+      <div class="area"><h3>Customer analytics</h3><p>Multilingual NLP for predictive analytics and customer understanding.</p></div>
+      <div class="area"><h3>Finance</h3><p>Market microstructure and statistical modeling of trading data.</p></div>
+      <div class="area"><h3>Data engineering</h3><p>ETL pipelines and OLAP for a microservices video-on-demand platform.</p></div>
+    </div>
+  </section>
+
+  <!-- ========================= FEATURED WORK ========================= -->
+  <section id="work" class="reveal">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Selected work</h2></div>
+
+    <div class="note">
+      <strong>Selected work: new section, needs your content.</strong> This is the most important section for a portfolio, and the old page didn't have it. The cards below are drafts based on your CV; please:
+      <ul>
+        <li>Keep 3 to 6 projects you are proudest of. For each: the problem, what you built, and the result (ideally with a number).</li>
+        <li>Add a link to each one: repo, report, demo, notebook, or blog post. A project with no link is much less convincing.</li>
+        <li>Optionally add a small image or diagram per card.</li>
+      </ul>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="kicker">GenAI · Health insurance</div>
+        <h3>Process-intelligence assistant</h3>
+        <p>LLM + RAG applications at Medifé that detect problems and redundancies in internal processes and propose more efficient flows.</p>
+        <ul class="tags"><li>LLMs</li><li>RAG</li><li>Agents</li><li>Python</li></ul>
+        <a class="more placeholder" href="#">Add result or link →</a>
+      </article>
+      <article class="card">
+        <div class="kicker">Complexity economics · Public policy</div>
+        <h3>Export diversification models</h3>
+        <p>Machine learning and economic-complexity models at Fundar to identify export diversification opportunities for Argentina.</p>
+        <ul class="tags"><li>ML</li><li>Networks</li><li>Economic complexity</li></ul>
+        <a class="more placeholder" href="#">Link to Fundar report →</a>
+      </article>
+      <article class="card">
+        <div class="kicker">AI ethics · Public sector</div>
+        <h3>AI ethics protocols &amp; policy chatbots</h3>
+        <p>Research and protocols on the ethics of AI, plus RAG chatbot prototypes with vector stores, communicated to public-sector clients.</p>
+        <ul class="tags"><li>AI policy</li><li>RAG</li><li>Vector stores</li></ul>
+        <a class="more placeholder" href="#">Link to document →</a>
+      </article>
+      <article class="card">
+        <div class="kicker">NLP · Customer experience</div>
+        <h3>Multilingual review classifier</h3>
+        <p>Deep learning NLP models at Medallia that classify customer-experience reviews in several languages (TensorFlow 1 and 2).</p>
+        <ul class="tags"><li>NLP</li><li>Deep learning</li><li>TensorFlow</li></ul>
+        <a class="more placeholder" href="#">Add scale or accuracy →</a>
+      </article>
+      <article class="card">
+        <div class="kicker">Finance · CME Group</div>
+        <h3>Tick size efficiency in FX futures</h3>
+        <p>Market microstructure models on CME foreign-exchange data to evaluate tick size efficiency, used for decision-making at CME.</p>
+        <ul class="tags"><li>Statistics</li><li>Microstructure</li><li>R / Python</li></ul>
+        <a class="more placeholder" href="#">Add outcome →</a>
+      </article>
+      <article class="card">
+        <div class="kicker">Ergodicity economics · Research</div>
+        <h3>Market stability &amp; ergodicity</h3>
+        <p>Summer research at the London Mathematical Laboratory (ICTP, Trieste) applying ergodicity economics to high-frequency trading data.</p>
+        <ul class="tags"><li>Stochastic processes</li><li>HFT data</li></ul>
+        <a class="more placeholder" href="#">Link to notes or slides →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================= EXPERIENCE ========================= -->
+  <section id="experience" class="reveal">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2></div>
+
+    <div class="note little">
+      <strong>Experience.</strong> The timeline and the filter work well. To make it stronger:
+      <ul>
+        <li>Most entries describe <em>tasks</em>. Rewrite 1 or 2 bullets per role as <em>impact</em>: "reduced X by Y%", "used by N analysts", "adopted by ministry Z".</li>
+        <li>The Quantit/Medifé role (2025 to 2026) is your most recent one; it deserves 2 or 3 concrete bullets.</li>
+        <li>Consider grouping the short teaching roles so they don't take as much space as the full-time jobs.</li>
+      </ul>
+    </div>
+
+    <div class="filters">
+      <div class="seg" role="group" aria-label="Filter experience">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="industry" aria-pressed="false">Industry</button>
+        <button type="button" data-filter="academia" aria-pressed="false">Academia</button>
+      </div>
+      <span class="legend">● industry &nbsp; ○ academia</span>
+    </div>
+
+    <ol class="tl" data-list="experience">
+      <li data-type="industry">
+        <div class="when">May 2025 – Jan 2026</div>
+        <div>
+          <h3>Data Scientist</h3>
+          <div class="org">Quantit, Buenos Aires · contractor at Medifé (health insurance)</div>
+          <p>Built applications that detect problems and redundancies in internal processes and make them more efficient, using LLMs, RAG, and other methods.</p>
+        </div>
+      </li>
+      <li data-type="academia">
+        <div class="when">Feb – Mar 2024</div>
+        <div>
+          <h3>Teaching Assistant</h3>
+          <div class="org">Torcuato Di Tella University, Buenos Aires</div>
+          <p>Managed special projects for a course on Neuroscience and Decision Making.</p>
+        </div>
+      </li>
+      <li data-type="industry">
+        <div class="when">Mar 2021 – Sep 2024</div>
+        <div>
+          <h3>Data Scientist / Researcher</h3>
+          <div class="org">Fundar, Buenos Aires</div>
+          <ul class="impact">
+            <li>Led data science research and consulting projects for public policy applications.</li>
+            <li>Implemented machine learning and Complexity Economics models for export diversification, among other uses.</li>
+            <li>Researched and developed protocols for the ethics of AI; programmed chatbots and researched RAG with LLMs and vector stores.</li>
+            <li>Wrote reports and communicated results and policy recommendations to public-sector clients.</li>
+          </ul>
+        </div>
+      </li>
+      <li data-type="industry">
+        <div class="when">Jan 2020 – Jan 2021</div>
+        <div>
+          <h3>Data Scientist</h3>
+          <div class="org">Medallia, Buenos Aires</div>
+          <p>Developed and implemented multi-language NLP deep learning models to classify customer experience reviews, using TensorFlow 1 and 2.</p>
+        </div>
+      </li>
+      <li data-type="academia">
+        <div class="when">Jul – Aug 2019</div>
+        <div>
+          <h3>Research Assistant</h3>
+          <div class="org">London Mathematical Laboratory · ICTP, Trieste, Italy</div>
+          <p>Summer school research on financial market stability, applying the ergodicity economics framework to high-frequency trading data, under the daily guidance of Ole Peters and Alex Adamou.</p>
+        </div>
+      </li>
+      <li data-type="industry">
+        <div class="when">Mar – Aug 2018</div>
+        <div>
+          <h3>Statistical Modeling Intern</h3>
+          <div class="org">CME Group · Research Park, Champaign, Illinois, USA</div>
+          <p>Developed market microstructure models to study tick size efficiency in CME's foreign currency exchange market data. The results were used for decision-making at CME.</p>
+        </div>
+      </li>
+      <li data-type="industry">
+        <div class="when">Jun 2015 – Mar 2017</div>
+        <div>
+          <h3>Software Developer</h3>
+          <div class="org">ARSAT, Buenos Aires</div>
+          <p>Python backend developer in an agile Scrum team. Maintained microservices for the video-on-demand platform play.cine.ar, and developed ETL methods and an OLAP data platform using Python cubes, PostgreSQL, and MongoDB.</p>
+        </div>
+      </li>
+      <li data-type="academia">
+        <div class="when">Jul 2013 – Dec 2014</div>
+        <div>
+          <h3>Research Assistant</h3>
+          <div class="org">CNEA National Atomic Energy Commission, Bariloche</div>
+          <p>Research toward my MS thesis in Physics: theoretical and computational work on atomic and molecular quantum physics models.</p>
+        </div>
+      </li>
+      <li data-type="academia">
+        <div class="when">2011 &amp; 2014</div>
+        <div>
+          <h3>Teaching Assistant</h3>
+          <div class="org">Balseiro Institute · University of Buenos Aires</div>
+          <p>Problem-solving classes for graduate Quantum Mechanics I (Balseiro, Jul–Dec 2014) and Electromagnetism (UBA, Feb–Jul 2011).</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ========================= PUBLICATIONS ========================= -->
+  <section id="publications" class="reveal">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Publications &amp; reports</h2></div>
+
+    <div class="note">
+      <strong>Publications: new section, needs your content.</strong> I did not want to invent titles, so every entry here is a placeholder, marked with a dashed outline. Please:
+      <ul>
+        <li>Add your papers, Fundar reports and working papers, your MS thesis (Balseiro), and any technical reports, newest first.</li>
+        <li>Use the format: authors (<em>your name in italics</em>), title, venue, year, and links (PDF, DOI, code).</li>
+        <li>Set <code>data-type</code> on each item to <code>paper</code>, <code>report</code>, or <code>thesis</code> so the filter works.</li>
+      </ul>
+    </div>
+
+    <div class="filters">
+      <div class="seg" role="group" aria-label="Filter publications">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
+        <button type="button" data-filter="report" aria-pressed="false">Reports</button>
+        <button type="button" data-filter="thesis" aria-pressed="false">Theses</button>
+      </div>
+    </div>
+
+    <ul class="pubs" data-list="publications">
+      <li data-type="report" class="placeholder">
+        <div class="year">20XX</div>
+        <div>
+          <h3><span class="badge">Report</span>[Title of Fundar report on export diversification / economic complexity]</h3>
+          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
+          <div class="res"><a href="#">PDF</a><a href="#">Web</a><a href="#">Code</a></div>
+        </div>
+      </li>
+      <li data-type="report" class="placeholder">
+        <div class="year">20XX</div>
+        <div>
+          <h3><span class="badge">Report</span>[Title of Fundar document on AI ethics / AI in the public sector]</h3>
+          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
+          <div class="res"><a href="#">PDF</a><a href="#">Web</a></div>
+        </div>
+      </li>
+      <li data-type="paper" class="placeholder">
+        <div class="year">20XX</div>
+        <div>
+          <h3><span class="badge">Paper</span>[Paper title]</h3>
+          <p class="meta">[Authors, with <i>M. Feole</i>]. <em>[Journal or conference]</em>.</p>
+          <div class="res"><a href="#">DOI</a><a href="#">arXiv</a><a href="#">PDF</a></div>
+        </div>
+      </li>
+      <li data-type="thesis" class="placeholder">
+        <div class="year">2014</div>
+        <div>
+          <h3><span class="badge">Thesis</span>[MS thesis title: atomic and molecular quantum physics models]</h3>
+          <p class="meta"><i>M. Feole</i>. MS in Physics, Balseiro Institute / CNEA, Bariloche. Grade: Outstanding.</p>
+          <div class="res"><a href="#">PDF</a><a href="#">Repository</a></div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ========================= TALKS ========================= -->
+  <section id="talks" class="reveal">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Talks, teaching &amp; writing</h2></div>
+
+    <div class="note">
+      <strong>Talks: new section, needs your content.</strong> List conference talks, meetups, webinars, panels, guest lectures, and podcasts, with event, city, date, and a link to slides or video. If you have few talks, keep the newsletter and teaching entries here so the section doesn't look empty.
+    </div>
+
+    <ul class="pubs">
+      <li class="placeholder">
+        <div class="year">20XX</div>
+        <div>
+          <h3><span class="badge">Talk</span>[Talk title, e.g. "RAG in practice: lessons from the public and health sectors"]</h3>
+          <p class="meta">[Event name], [City]. </p>
+          <div class="res"><a href="#">Slides</a><a href="#">Video</a></div>
+        </div>
+      </li>
+      <li>
+        <div class="year">Ongoing</div>
+        <div>
+          <h3><span class="badge">Writing</span>Navegarte</h3>
+          <p class="meta">Newsletter with essays on a variety of topics.</p>
+          <div class="res"><a href="https://navegarte.substack.com/" rel="noopener">Read on Substack</a></div>
+        </div>
+      </li>
+      <li>
+        <div class="year">2024</div>
+        <div>
+          <h3><span class="badge">Teaching</span>Neuroscience and Decision Making</h3>
+          <p class="meta">Special projects for the course, Torcuato Di Tella University.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ========================= EDUCATION ========================= -->
+  <section id="education" class="reveal">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
+
+    <div class="note little">
+      <strong>Education.</strong> Nearly done. Add your MS thesis title (and a link if it's online), and consider adding relevant courses or certifications from the last few years (e.g. GenAI or cloud).
+    </div>
+
+    <ul class="edu">
+      <li>
+        <div class="when">2017 – 2019</div>
+        <h3>MS in Statistics and Analytics</h3>
+        <p>University of Illinois at Urbana-Champaign, USA. Fulbright Scholarship. GPA 3.89/4.0.</p>
+      </li>
+      <li>
+        <div class="when">2013 – 2014</div>
+        <h3>MS in Physics</h3>
+        <p>Balseiro Institute, Bariloche, Argentina. CNEA Scholarship. GPA 9.00/10. Thesis grade: Outstanding.</p>
+      </li>
+      <li>
+        <div class="when">2008 – 2013</div>
+        <h3>Licenciatura (BS) in Physics</h3>
+        <p>Balseiro Institute, Bariloche. Five-year degree; first two years at the University of Buenos Aires. CNEA Scholarship. GPA 8.05/10.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ========================= SKILLS ========================= -->
+  <section id="skills" class="reveal">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Skills</h2></div>
+
+    <div class="note little">
+      <strong>Skills.</strong> Now grouped into chips (outlined = strongest). Check that the list is current: cloud platforms (AWS, GCP, Azure), LLM frameworks (LangChain, LlamaIndex, OpenAI or Anthropic APIs), MLOps tools, Docker, and dashboards are common things recruiters look for. Remove anything you would not want to be interviewed on.
+    </div>
+
+    <div class="skills">
+      <div class="skill">
+        <h3>Programming</h3>
+        <ul class="chips"><li class="strong">Python</li><li class="strong">SQL</li><li>R</li><li>Mathematica</li><li>Bash</li></ul>
+      </div>
+      <div class="skill">
+        <h3>ML &amp; data libraries</h3>
+        <ul class="chips"><li class="strong">Scikit-Learn</li><li class="strong">PyTorch</li><li>TensorFlow</li><li>NumPy</li><li>Pandas</li><li>NetworkX</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Generative AI</h3>
+        <ul class="chips"><li class="strong">LLMs</li><li class="strong">RAG</li><li>Vector stores</li><li>Agents</li><li>Chatbots</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Data &amp; tools</h3>
+        <ul class="chips"><li>Spark</li><li>PostgreSQL</li><li>MongoDB</li><li>Git</li><li>Anaconda</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Methods</h3>
+        <ul class="chips"><li class="strong">Statistical modeling</li><li>NLP</li><li>Deep learning</li><li>Network science</li><li>Stochastic processes</li></ul>
+      </div>
+      <div class="skill">
+        <h3>Languages &amp; citizenship</h3>
+        <p>Spanish (native) · English (proficient; TOEFL 106/120; GRE Quant 170/170, Verbal 162/170) · German (advanced; Sprachdiplom II). German and Argentinian citizen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT ========================= -->
+  <section id="contact" class="reveal">
+    <div class="contact">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's work together</h2>
+      <p>I'm open to new opportunities in data science, machine learning, and applied AI. Email and LinkedIn are the best ways to reach me.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>mmfeole@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
+        <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Navegarte</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year">2026</span> Marcos Feole</span>
+    <span>Buenos Aires · <a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme (dark red by default)
+    if (load("theme") === "light") root.setAttribute("data-theme", "light");
+    document.getElementById("theme").addEventListener("click", function () {
+      var light = root.getAttribute("data-theme") === "light";
+      if (light) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "light");
+      store("theme", light ? "dark" : "light");
+    });
+
+    // Review notes toggle. Delete the button and data-notes="on" before publishing.
+    var notesBtn = document.getElementById("notes-toggle");
+    function setNotes(on) {
+      root.setAttribute("data-notes", on ? "on" : "off");
+      notesBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    if (root.getAttribute("data-notes") !== "on") notesBtn.hidden = true;
+    else if (load("notes") === "off") setNotes(false);
+    notesBtn.addEventListener("click", function () {
+      var on = root.getAttribute("data-notes") !== "on";
+      setNotes(on);
+      store("notes", on ? "on" : "off");
+    });
+
+    // Filters (experience and publications)
+    document.querySelectorAll(".filters .seg").forEach(function (seg) {
+      var section = seg.closest("section");
+      var items = section.querySelectorAll("[data-list] > li");
+      var buttons = seg.querySelectorAll("button");
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var f = btn.getAttribute("data-filter");
+          buttons.forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+          items.forEach(function (li) { li.hidden = !(f === "all" || li.getAttribute("data-type") === f); });
+        });
+      });
+    });
+
+    // Highlight the current section in the nav, and reveal sections on scroll
+    if ("IntersectionObserver" in window) {
+      var links = {};
+      document.querySelectorAll(".nav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting || !links[e.target.id]) return;
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle("active", k === e.target.id); });
+        });
+      }, { rootMargin: "-40% 0px -55% 0px" });
+      document.querySelectorAll("main section[id]").forEach(function (s) { spy.observe(s); });
+
+      var rev = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); rev.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) { rev.observe(el); });
+    } else {
+      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+    }
+  })();
+</script>
+</body>
+</html>
