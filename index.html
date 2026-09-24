@@ -369,7 +369,7 @@
         <li>MS Physics, Balseiro Institute</li>
       </ul>
       <div class="links">
-        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>Email</a>
+        <a class="btn primary js-mail" href="#contact" data-u="mmfeole" data-d="gmail.com"><svg><use href="#i-mail"/></svg>Email</a>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
         <a class="btn placeholder" href="https://github.com/mfeole" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
         <a class="btn placeholder" href="#" rel="noopener"><svg><use href="#i-scholar"/></svg>Scholar</a>
@@ -776,7 +776,7 @@
       <h2>Let's work together</h2>
       <p>I'm open to new opportunities in data science, machine learning, and applied AI. Email and LinkedIn are the best ways to reach me.</p>
       <div class="links">
-        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>mmfeole@gmail.com</a>
+        <a class="btn primary js-mail" href="#contact" data-u="mmfeole" data-d="gmail.com"><svg><use href="#i-mail"/></svg>mmfeole at gmail dot com</a>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
         <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Navegarte</a>
       </div>
@@ -799,6 +799,14 @@
     function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Email: the address is only assembled on click, so it never appears in the HTML
+    document.querySelectorAll(".js-mail").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = "mailto:" + a.getAttribute("data-u") + "@" + a.getAttribute("data-d");
+      });
+    });
 
     // Theme (dark red by default)
     if (load("theme") === "light") root.setAttribute("data-theme", "light");
