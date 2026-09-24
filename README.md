@@ -8,7 +8,7 @@ Open `index.html` in a browser, or serve the folder with `python3 -m http.server
 
 ## Review notes
 
-Sections that still need work carry dashed **"Improve a lot"** (orange) or **"Improve a little"** (blue) notes, and placeholder content has a dashed outline. The **✎ Notes** button in the top bar hides or shows them.
+Sections that still need work carry dashed orange **"Improve a lot"** notes, and placeholder content has a dashed outline. The **✎ Notes** button in the top bar hides or shows them.
 
 Before publishing:
 

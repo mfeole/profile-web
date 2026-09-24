@@ -29,8 +29,7 @@
     --accent-soft: rgba(224, 82, 95, 0.12);
     --glow: rgba(143, 29, 44, 0.55);
     --note-a-lot: #f0a13a;
-    --note-a-little: #7fb8d8;
-    --note-bg: rgba(240, 161, 58, 0.08);
+      --note-bg: rgba(240, 161, 58, 0.08);
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -52,7 +51,6 @@
     --accent-soft: rgba(158, 31, 47, 0.08);
     --glow: rgba(158, 31, 47, 0.18);
     --note-a-lot: #b86400;
-    --note-a-little: #2a6f97;
     --note-bg: rgba(184, 100, 0, 0.06);
     color-scheme: light;
   }
@@ -293,8 +291,6 @@
     font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
     color: var(--bg); background: var(--note-a-lot); padding: 0.1rem 0.5rem; border-radius: 4px;
   }
-  .note.little { border-color: var(--note-a-little); background: color-mix(in srgb, var(--note-a-little) 7%, transparent); }
-  .note.little::before { content: "✎ Improve a little"; background: var(--note-a-little); }
   .note ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
   .note li { margin: 0.15rem 0; }
   .note code { font-family: var(--mono); font-size: 0.82rem; }
@@ -375,13 +371,6 @@
     </div>
   </div>
 
-  <div class="note little">
-    <strong>Hero.</strong> Good base, but:
-    <ul>
-      <li>Check the numbers in the stats strip below; swap any of them for a stronger one (e.g. models in production, reports published, people trained).</li>
-      <li>Consider a sharper one-line value proposition: what problem you solve and for whom (e.g. "GenAI and ML for health, public policy, and finance").</li>
-    </ul>
-  </div>
 
   <div class="stats reveal">
     <div class="stat"><b>8+</b><span>years in data science</span></div>
@@ -394,13 +383,6 @@
   <section id="about" class="reveal">
     <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
 
-    <div class="note little">
-      <strong>About.</strong> The content is solid, but it was a long wall of text. I shortened it and moved the domain list into the cards below. Still to do:
-      <ul>
-        <li>Open with one concrete achievement (a number, a result, a client impact) instead of a general statement.</li>
-        <li>Say in one sentence what kind of role or project you are looking for now.</li>
-      </ul>
-    </div>
 
     <div class="prose">
       <p>I'm a data scientist with 8+ years of experience turning data into models and knowledge for better decision-making. I combine <strong>mathematical, statistical, and computational modeling</strong> with hands-on <strong>engineering</strong>, and I care about shipping tools that work in production.</p>
@@ -481,14 +463,6 @@
   <section id="experience" class="reveal">
     <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2></div>
 
-    <div class="note little">
-      <strong>Experience.</strong> The timeline and the filter work well. To make it stronger:
-      <ul>
-        <li>Most entries describe <em>tasks</em>. Rewrite 1 or 2 bullets per role as <em>impact</em>: "reduced X by Y%", "used by N analysts", "adopted by ministry Z".</li>
-        <li>The Quantit/Medifé role (2025 to 2026) is your most recent one; it deserves 2 or 3 concrete bullets.</li>
-        <li>Consider grouping the short teaching roles so they don't take as much space as the full-time jobs.</li>
-      </ul>
-    </div>
 
     <div class="filters">
       <div class="seg" role="group" aria-label="Filter experience">
@@ -584,9 +558,6 @@
   <section id="publications" class="reveal">
     <div class="sec-head"><span class="sec-num">04</span><h2>Publications</h2></div>
 
-    <div class="note little">
-      <strong>Publications.</strong> Your real list is in. Optional extras: a one-line summary under each paper, and a link for the CME Group study if a public version exists.
-    </div>
 
     <div class="pub-group">
       <h3 class="pub-field">Economics</h3>
@@ -704,9 +675,6 @@
   <section id="education" class="reveal">
     <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
 
-    <div class="note little">
-      <strong>Education.</strong> Nearly done. Consider adding relevant courses or certifications from the last few years (e.g. GenAI or cloud).
-    </div>
 
     <ul class="edu">
       <li>
@@ -731,9 +699,6 @@
   <section id="skills" class="reveal">
     <div class="sec-head"><span class="sec-num">07</span><h2>Skills</h2></div>
 
-    <div class="note little">
-      <strong>Skills.</strong> Now grouped into chips (outlined = strongest). Check that the list is current: cloud platforms (AWS, GCP, Azure), LLM frameworks (LangChain, LlamaIndex, OpenAI or Anthropic APIs), MLOps tools, Docker, and dashboards are common things recruiters look for. Remove anything you would not want to be interviewed on.
-    </div>
 
     <div class="skills">
       <div class="skill">
