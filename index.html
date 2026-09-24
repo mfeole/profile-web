@@ -152,6 +152,7 @@
   .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
   .btn.primary { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
   .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.static, .btn.static:hover { cursor: text; transform: none; background: var(--accent-deep); border-color: var(--accent-deep); }
 
   /* Stats strip */
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
@@ -328,10 +329,8 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z"/></symbol>
-  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
   <symbol id="i-scholar" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zm-6.18 9.1v4L12 20l6.18-3.9v-4L12 16l-6.18-3.9z"/></symbol>
   <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
 </svg>
 
@@ -357,8 +356,7 @@
 
   <!-- ========================= HERO ========================= -->
   <div class="hero">
-    <!-- To use a photo: replace "MF" with <img src="photo.jpg" alt="Marcos Feole"> -->
-    <div class="avatar" role="img" aria-label="Marcos Feole">MF</div>
+    <div class="avatar"><img src="photo.jpg" alt="Marcos Feole" width="640" height="640"></div>
     <div>
       <p class="eyebrow">Data Scientist · Statistician · Physicist</p>
       <h1>Marcos <em>Feole</em></h1>
@@ -369,12 +367,10 @@
         <li>MS Physics, Balseiro Institute</li>
       </ul>
       <div class="links">
-        <a class="btn primary js-mail" href="#contact" data-u="mmfeole" data-d="gmail.com"><svg><use href="#i-mail"/></svg>Email</a>
+        <span class="btn primary static"><svg><use href="#i-mail"/></svg>mmfeole at gmail dot com</span>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
-        <a class="btn placeholder" href="https://github.com/mfeole" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
-        <a class="btn placeholder" href="#" rel="noopener"><svg><use href="#i-scholar"/></svg>Scholar</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=_TVFG4QAAAAJ&amp;hl=es" rel="noopener"><svg><use href="#i-scholar"/></svg>Google Scholar</a>
         <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Newsletter</a>
-        <a class="btn placeholder" href="cv.pdf"><svg><use href="#i-doc"/></svg>CV (PDF)</a>
       </div>
     </div>
   </div>
@@ -382,8 +378,6 @@
   <div class="note little">
     <strong>Hero.</strong> Good base, but:
     <ul>
-      <li>Replace the "MF" initials with a real, well-lit photo (square, at least 600&times;600 px, saved as <code>photo.jpg</code>).</li>
-      <li>Check the GitHub link, add your Google Scholar / ORCID / ResearchGate link (or delete that button), and upload a <code>cv.pdf</code> next to this file.</li>
       <li>Check the numbers in the stats strip below; swap any of them for a stronger one (e.g. models in production, reports published, people trained).</li>
       <li>Consider a sharper one-line value proposition: what problem you solve and for whom (e.g. "GenAI and ML for health, public policy, and finance").</li>
     </ul>
@@ -392,7 +386,7 @@
   <div class="stats reveal">
     <div class="stat"><b>8+</b><span>years in data science</span></div>
     <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
-    <div class="stat"><b>6</b><span>industries: health, policy, finance, CX, media, research</span></div>
+    <div class="stat"><b>7</b><span>industries: health, policy, development, complexity and ergodicity economics, finance, CX, media, research</span></div>
     <div class="stat"><b>3</b><span>languages: Spanish, English, German</span></div>
   </div>
 
