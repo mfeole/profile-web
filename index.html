@@ -228,6 +228,10 @@
   .pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .pubs > li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
   .pubs > li[hidden] { display: none; }
+  .pub-group + .pub-group { margin-top: 2.5rem; }
+  .pub-field { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 0.75rem; }
+  .pubs h3 a { color: var(--ink); text-decoration-color: var(--accent-deep); }
+  .pubs h3 a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
   .pubs .year { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); padding-top: 0.2rem; }
   .pubs h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
   .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0.5rem; }
@@ -415,7 +419,7 @@
       <div class="area"><h3>Economics research</h3><p>ML with Complexity Economics (Hidalgo &amp; Hausmann) and Ergodicity Economics (Peters &amp; Adamou).</p></div>
       <div class="area"><h3>AI safety &amp; policy</h3><p>Protocols and recommendations for public-sector clients.</p></div>
       <div class="area"><h3>Customer analytics</h3><p>Multilingual NLP for predictive analytics and customer understanding.</p></div>
-      <div class="area"><h3>Finance</h3><p>Market microstructure and statistical modeling of trading data.</p></div>
+      <div class="area"><h3>Computational finance</h3><p>Market microstructure modeling, efficient tick-size performance prediction, and statistical modeling of trading data.</p></div>
       <div class="area"><h3>Data engineering</h3><p>ETL pipelines and OLAP for a microservices video-on-demand platform.</p></div>
     </div>
   </section>
@@ -446,7 +450,7 @@
         <h3>Export diversification models</h3>
         <p>Machine learning and economic-complexity models at Fundar to identify export diversification opportunities for Argentina.</p>
         <ul class="tags"><li>ML</li><li>Networks</li><li>Economic complexity</li></ul>
-        <a class="more placeholder" href="#">Link to Fundar report →</a>
+        <a class="more" href="#publications">See the Economics publications →</a>
       </article>
       <article class="card">
         <div class="kicker">AI ethics · Public sector</div>
@@ -474,7 +478,7 @@
         <h3>Market stability &amp; ergodicity</h3>
         <p>Summer research at the London Mathematical Laboratory (ICTP, Trieste) applying ergodicity economics to high-frequency trading data.</p>
         <ul class="tags"><li>Stochastic processes</li><li>HFT data</li></ul>
-        <a class="more placeholder" href="#">Link to notes or slides →</a>
+        <a class="more" href="papers/Feole_2019_Optimal_leverage_in_high_frequency_trading.pdf">Read the paper (PDF) →</a>
       </article>
     </div>
   </section>
@@ -584,60 +588,87 @@
 
   <!-- ========================= PUBLICATIONS ========================= -->
   <section id="publications" class="reveal">
-    <div class="sec-head"><span class="sec-num">04</span><h2>Publications &amp; reports</h2></div>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Publications</h2></div>
 
-    <div class="note">
-      <strong>Publications: new section, needs your content.</strong> I did not want to invent titles, so every entry here is a placeholder, marked with a dashed outline. Please:
-      <ul>
-        <li>Add your papers, Fundar reports and working papers, your MS thesis (Balseiro), and any technical reports, newest first.</li>
-        <li>Use the format: authors (<em>your name in italics</em>), title, venue, year, and links (PDF, DOI, code).</li>
-        <li>Set <code>data-type</code> on each item to <code>paper</code>, <code>report</code>, or <code>thesis</code> so the filter works.</li>
+    <div class="note little">
+      <strong>Publications.</strong> Your real list is in. Optional extras: a one-line summary under each paper, and a link for the CME Group study if a public version exists.
+    </div>
+
+    <div class="pub-group">
+      <h3 class="pub-field">Economics</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2024</div>
+          <div>
+            <h3><a href="https://www.jstor.org/stable/48771911" rel="noopener">Argentina's green export potential: Evidence and Proposals for a Development Policy</a></h3>
+            <p class="meta">(El potencial exportador verde de la Argentina). Palazzo G, <i>Feole M</i>, et al. <em>Desarrollo Económico</em>.</p>
+            <div class="res"><a href="https://www.jstor.org/stable/48771911" rel="noopener">JSTOR</a><a href="https://revistas.ides.org.ar/desarrollo-economico/es/article/view/649" rel="noopener">IDES</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="year">2021–24</div>
+          <div>
+            <h3><a href="https://fund.ar/serie/complejidad-economica/" rel="noopener">Complexity Economics publications</a></h3>
+            <p class="meta">Fundar.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2021–24</div>
+          <div>
+            <h3><a href="https://fund.ar/equipo/marcos-feole/" rel="noopener">Other publications</a></h3>
+            <p class="meta">Fundar.</p>
+          </div>
+        </li>
       </ul>
     </div>
 
-    <div class="filters">
-      <div class="seg" role="group" aria-label="Filter publications">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
-        <button type="button" data-filter="report" aria-pressed="false">Reports</button>
-        <button type="button" data-filter="thesis" aria-pressed="false">Theses</button>
-      </div>
+    <div class="pub-group">
+      <h3 class="pub-field">Finance</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2019</div>
+          <div>
+            <h3><a href="papers/Feole_2019_Optimal_leverage_in_high_frequency_trading.pdf">Optimal Leverage in High Frequency Trading Data</a></h3>
+            <p class="meta"><i>Feole M</i>.</p>
+            <div class="res"><a href="papers/Feole_2019_Optimal_leverage_in_high_frequency_trading.pdf">PDF</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="year">2018</div>
+          <div>
+            <h3>Studying the impact of a tick size change: market microstructure research for FX markets</h3>
+            <p class="meta">CME Group Inc.</p>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <ul class="pubs" data-list="publications">
-      <li data-type="report" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Report</span>[Title of Fundar report on export diversification / economic complexity]</h3>
-          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Web</a><a href="#">Code</a></div>
-        </div>
-      </li>
-      <li data-type="report" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Report</span>[Title of Fundar document on AI ethics / AI in the public sector]</h3>
-          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Web</a></div>
-        </div>
-      </li>
-      <li data-type="paper" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Paper</span>[Paper title]</h3>
-          <p class="meta">[Authors, with <i>M. Feole</i>]. <em>[Journal or conference]</em>.</p>
-          <div class="res"><a href="#">DOI</a><a href="#">arXiv</a><a href="#">PDF</a></div>
-        </div>
-      </li>
-      <li data-type="thesis" class="placeholder">
-        <div class="year">2014</div>
-        <div>
-          <h3><span class="badge">Thesis</span>[MS thesis title: atomic and molecular quantum physics models]</h3>
-          <p class="meta"><i>M. Feole</i>. MS in Physics, Balseiro Institute / CNEA, Bariloche. Grade: Outstanding.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Repository</a></div>
-        </div>
-      </li>
-    </ul>
+    <div class="pub-group">
+      <h3 class="pub-field">Physics</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2017</div>
+          <div>
+            <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/875/13/122001/meta" rel="noopener">Description of an elastic scattering process in the pilot-wave formulation</a></h3>
+            <p class="meta">Cordeiro Ballesteros DC, <i>Feole M</i>. <em>Journal of Physics: Conference Series</em>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2015</div>
+          <div>
+            <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/583/1/012026/meta" rel="noopener">When vortices and cusps meet</a></h3>
+            <p class="meta">Navarrete F, <i>Feole M</i>. <em>Journal of Physics: Conference Series</em>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2014</div>
+          <div>
+            <h3><a href="https://nuclea.cnea.gob.ar/items/9133f38e-cb35-41c1-b994-1d444423be37/full" rel="noopener">Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</a></h3>
+            <p class="meta"><i>Feole M</i>. MSc thesis (Tesis de Maestría en Ciencias Físicas), Balseiro Institute.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <!-- ========================= TALKS ========================= -->
@@ -680,7 +711,7 @@
     <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
 
     <div class="note little">
-      <strong>Education.</strong> Nearly done. Add your MS thesis title (and a link if it's online), and consider adding relevant courses or certifications from the last few years (e.g. GenAI or cloud).
+      <strong>Education.</strong> Nearly done. Consider adding relevant courses or certifications from the last few years (e.g. GenAI or cloud).
     </div>
 
     <ul class="edu">
@@ -692,7 +723,7 @@
       <li>
         <div class="when">2013 – 2014</div>
         <h3>MS in Physics</h3>
-        <p>Balseiro Institute, Bariloche, Argentina. CNEA Scholarship. GPA 9.00/10. Thesis grade: Outstanding.</p>
+        <p>Balseiro Institute, Bariloche, Argentina. CNEA Scholarship. GPA 9.00/10. Thesis: <a href="https://nuclea.cnea.gob.ar/items/9133f38e-cb35-41c1-b994-1d444423be37/full" rel="noopener"><em>Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</em></a> (grade: Outstanding).</p>
       </li>
       <li>
         <div class="when">2008 – 2013</div>
