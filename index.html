@@ -89,7 +89,7 @@
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
   }
-  .bar .wrap { display: flex; align-items: center; gap: 1.25rem; min-height: 3.75rem; }
+  .bar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 3.75rem; max-width: 76rem; }
   .brand {
     font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
     color: var(--ink); text-decoration: none; white-space: nowrap;
@@ -99,10 +99,10 @@
   .nav::-webkit-scrollbar { display: none; }
   .nav a {
     color: var(--muted); text-decoration: none; white-space: nowrap;
-    padding: 0.35rem 0.7rem; border-radius: 999px; transition: color .2s, background .2s;
+    padding: 0.35rem 0.6rem; border-radius: 999px; transition: color .2s, background .2s;
   }
   .nav a:hover { color: var(--ink); }
-  .nav a.active { color: var(--ink); background: var(--accent-soft); }
+  .nav a.active { color: var(--ink); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent-deep); }
   .icon-btn {
     font: inherit; font-size: 0.85rem; line-height: 1; color: var(--muted);
     background: none; border: 1px solid var(--line); border-radius: 999px;
@@ -161,7 +161,9 @@
   /* ============================================================
      SECTIONS
      ============================================================ */
+  main { min-height: calc(100vh - 12rem); }
   section { padding: 4.5rem 0 1rem; }
+  section#home { padding: 0; }
   .sec-head { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 2rem; flex-wrap: wrap; }
   .sec-num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
   h2 {
@@ -270,8 +272,8 @@
 
   /* Reveal on scroll */
   @media (prefers-reduced-motion: no-preference) {
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    main > section.current { animation: page-in .35s ease; }
+    @keyframes page-in { from { opacity: 0.4; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   }
 
   /* ============================================================
@@ -300,12 +302,14 @@
   /* ============================================================
      SMALL SCREENS
      ============================================================ */
-  @media (max-width: 48rem) {
+  @media (max-width: 64rem) {
     .bar .wrap { flex-wrap: wrap; padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 0.4rem 0.6rem; }
     .brand { order: 1; margin-right: auto; }
     .icon-btn { order: 2; }
-    .nav { order: 3; width: 100%; margin: 0 -0.7rem; }
+    .nav { order: 3; width: 100%; margin: 0 -0.6rem; }
     html { scroll-padding-top: 7rem; }
+  }
+  @media (max-width: 48rem) {
     .hero { grid-template-columns: 1fr; padding: 2.5rem 0 2.5rem; gap: 1.75rem; }
     .avatar { width: 8rem; height: 8rem; font-size: 2.6rem; }
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -332,8 +336,9 @@
 
 <header class="bar">
   <div class="wrap">
-    <a class="brand" href="#top">Marcos <span>Feole</span></a>
+    <a class="brand" href="#home">Marcos <span>Feole</span></a>
     <nav class="nav" aria-label="Sections">
+      <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
@@ -348,9 +353,10 @@
   </div>
 </header>
 
-<main id="top" class="wrap">
+<main class="wrap">
 
-  <!-- ========================= HERO ========================= -->
+  <!-- ========================= HOME ========================= -->
+  <section id="home">
   <div class="hero">
     <div class="avatar"><img src="photo.jpg" alt="Marcos Feole" width="640" height="640"></div>
     <div>
@@ -372,15 +378,16 @@
   </div>
 
 
-  <div class="stats reveal">
+  <div class="stats">
     <div class="stat"><b>8+</b><span>years in data science</span></div>
     <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
     <div class="stat"><b>7</b><span>industries: health, policy, development, complexity and ergodicity economics, finance, CX, media, research</span></div>
     <div class="stat"><b>3</b><span>languages: Spanish, English, German</span></div>
   </div>
+  </section>
 
   <!-- ========================= ABOUT ========================= -->
-  <section id="about" class="reveal">
+  <section id="about">
     <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
 
 
@@ -401,7 +408,7 @@
   </section>
 
   <!-- ========================= FEATURED WORK ========================= -->
-  <section id="work" class="reveal">
+  <section id="work">
     <div class="sec-head"><span class="sec-num">02</span><h2>Selected work</h2></div>
 
     <div class="note">
@@ -460,7 +467,7 @@
   </section>
 
   <!-- ========================= EXPERIENCE ========================= -->
-  <section id="experience" class="reveal">
+  <section id="experience">
     <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2></div>
 
 
@@ -555,7 +562,7 @@
   </section>
 
   <!-- ========================= PUBLICATIONS ========================= -->
-  <section id="publications" class="reveal">
+  <section id="publications">
     <div class="sec-head"><span class="sec-num">04</span><h2>Publications</h2></div>
 
 
@@ -637,7 +644,7 @@
   </section>
 
   <!-- ========================= TALKS ========================= -->
-  <section id="talks" class="reveal">
+  <section id="talks">
     <div class="sec-head"><span class="sec-num">05</span><h2>Talks, teaching &amp; writing</h2></div>
 
     <div class="note">
@@ -672,7 +679,7 @@
   </section>
 
   <!-- ========================= EDUCATION ========================= -->
-  <section id="education" class="reveal">
+  <section id="education">
     <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
 
 
@@ -696,7 +703,7 @@
   </section>
 
   <!-- ========================= SKILLS ========================= -->
-  <section id="skills" class="reveal">
+  <section id="skills">
     <div class="sec-head"><span class="sec-num">07</span><h2>Skills</h2></div>
 
 
@@ -729,7 +736,7 @@
   </section>
 
   <!-- ========================= CONTACT ========================= -->
-  <section id="contact" class="reveal">
+  <section id="contact">
     <div class="contact">
       <p class="eyebrow">Get in touch</p>
       <h2>Let's work together</h2>
@@ -747,7 +754,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; <span id="year">2026</span> Marcos Feole</span>
-    <span>Buenos Aires · <a href="#top">Back to top ↑</a></span>
+    <span>Buenos Aires · <a href="#home">Home</a></span>
   </div>
 </footer>
 
@@ -803,27 +810,41 @@
       });
     });
 
-    // Highlight the current section in the nav, and reveal sections on scroll
-    if ("IntersectionObserver" in window) {
-      var links = {};
-      document.querySelectorAll(".nav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting || !links[e.target.id]) return;
-          Object.keys(links).forEach(function (k) { links[k].classList.toggle("active", k === e.target.id); });
-        });
-      }, { rootMargin: "-40% 0px -55% 0px" });
-      document.querySelectorAll("main section[id]").forEach(function (s) { spy.observe(s); });
-
-      var rev = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("in"); rev.unobserve(e.target); }
-        });
-      }, { rootMargin: "0px 0px -8% 0px" });
-      document.querySelectorAll(".reveal").forEach(function (el) { rev.observe(el); });
-    } else {
-      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+    // Pages: show one section at a time, chosen from the top bar. Home is the default.
+    var pages = document.querySelectorAll("main > section[id]");
+    var navLinks = document.querySelectorAll(".nav a");
+    function isPage(id) {
+      var el = id && document.getElementById(id);
+      return !!el && el.parentNode.tagName === "MAIN";
     }
+    function show(id) {
+      if (!isPage(id)) id = "home";
+      pages.forEach(function (sec) {
+        var on = sec.id === id;
+        sec.hidden = !on;
+        sec.classList.toggle("current", on);
+      });
+      navLinks.forEach(function (a) {
+        var on = a.getAttribute("href") === "#" + id;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+        if (on && a.scrollIntoView) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+      });
+      window.scrollTo(0, 0);
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href").slice(1);
+      if (!isPage(id)) return;
+      e.preventDefault();
+      show(id);
+      try { history.pushState(null, "", "#" + id); } catch (err) {}
+    });
+    function fromHash() { show(location.hash.slice(1)); }
+    window.addEventListener("popstate", fromHash);
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
   })();
 </script>
 </body>
