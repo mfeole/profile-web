@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bautismo de las creencias</title>
+<meta name="description" content="Bautismo de las creencias: un proyecto de psicología y filosofía que nace de un libro y se extiende más allá de él.">
+<meta name="theme-color" content="#1a070b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238f1d2c'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='30' fill='%23f4ecd8'%3EBC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+<style>
+  /* ============================================================
+     THEME TOKENS. The two colors of the project are dark red and
+     ivory. Dark (red ground, ivory letters) is the default; the
+     light theme swaps them (ivory ground, red letters).
+     ============================================================ */
+  :root {
+    --bg: #1a070b;
+    --bg-2: #230a0f;
+    --card: #2a0d13;
+    --ink: #f4ecd8;
+    --muted: #cdbfa6;
+    --faint: #8f7f6c;
+    --line: #4a1d24;
+    --accent: #efe3c4;
+    --accent-2: #fbf5e4;
+    --accent-deep: #8f1d2c;
+    --ivory-soft: rgba(244, 236, 216, 0.07);
+    --glow: rgba(143, 29, 44, 0.6);
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --radius: 14px;
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f0de;
+    --bg-2: #f0e6cf;
+    --card: #fbf6e9;
+    --ink: #3a0a12;
+    --muted: #6e3a40;
+    --faint: #9a7a74;
+    --line: #e2d2b0;
+    --accent: #8f1d2c;
+    --accent-2: #a8283a;
+    --accent-deep: #8f1d2c;
+    --ivory-soft: rgba(143, 29, 44, 0.06);
+    --glow: rgba(143, 29, 44, 0.16);
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(60rem 32rem at 85% -10%, var(--glow), transparent 70%),
+      radial-gradient(45rem 28rem at -10% 25%, var(--ivory-soft), transparent 70%),
+      var(--bg);
+    background-repeat: no-repeat;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  a { color: var(--accent-2); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: var(--accent-deep); color: #f4ecd8; }
+
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ============================================================
+     TOP BAR
+     ============================================================ */
+  .bar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 3.75rem; max-width: 76rem; }
+  .brand {
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
+    color: var(--ink); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .brand span { color: var(--accent); font-style: italic; }
+  .nav { display: flex; gap: 0.2rem; margin-left: auto; font-size: 0.92rem; }
+  .nav a {
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+    padding: 0.35rem 0.75rem; border-radius: 999px; transition: color .2s, background .2s;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a.active { color: var(--ink); background: var(--ivory-soft); box-shadow: inset 0 0 0 1px var(--accent-deep); }
+  .icon-btn {
+    font: inherit; font-size: 0.85rem; line-height: 1; color: var(--muted);
+    background: none; border: 1px solid var(--line); border-radius: 999px;
+    height: 2.2rem; min-width: 2.2rem; padding: 0 0.7rem; cursor: pointer; flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .icon-btn:hover { color: var(--accent-2); border-color: var(--accent); }
+  .icon-btn svg { width: 1rem; height: 1rem; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  main { min-height: calc(100vh - 12rem); }
+  .hero { display: grid; grid-template-columns: auto 1fr; gap: 3.5rem; align-items: center; padding: 5.5rem 0 4.5rem; }
+
+  /* Emblem: an ivory ring dissolving into the red, like water on stone */
+  .emblem {
+    position: relative; width: 14rem; height: 14rem; border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(244, 236, 216, 0.95) 0 14%, rgba(244, 236, 216, 0.35) 30%, transparent 62%),
+      linear-gradient(160deg, #a52a3a, var(--accent-deep) 45%, #3a0a12);
+    box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--line), 0 30px 80px -20px var(--glow);
+    display: grid; place-items: center;
+  }
+  .emblem svg { width: 64%; height: 64%; color: #f4ecd8; opacity: 0.9; }
+  :root[data-theme="light"] .emblem { box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--line), 0 30px 80px -24px rgba(143, 29, 44, 0.45); }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 0.9rem;
+  }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.7rem, 7vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 1.2rem;
+  }
+  .hero h1 em { color: var(--accent); font-weight: 400; }
+  .lede { font-family: var(--serif); font-size: 1.35rem; line-height: 1.5; margin: 0 0 1.75rem; max-width: 36rem; color: var(--ink); }
+  .links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    text-decoration: none; color: var(--ink); border: 1px solid var(--line); background: var(--card);
+    padding: 0.5rem 1.1rem; border-radius: 999px; font-weight: 500; font-size: 0.93rem;
+    transition: border-color .2s, transform .2s, background .2s;
+  }
+  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .btn.primary { background: var(--accent-deep); border-color: var(--accent-deep); color: #f4ecd8; }
+  .btn.primary:hover { background: #a52a3a; border-color: #a52a3a; }
+
+  /* Ivory band that melts into the red on both sides */
+  .band {
+    margin: 0 0 4rem; padding: 2.4rem 2rem; border-radius: calc(var(--radius) + 6px);
+    background:
+      linear-gradient(90deg, transparent, rgba(244, 236, 216, 0.10) 20%, rgba(244, 236, 216, 0.14) 50%, rgba(244, 236, 216, 0.10) 80%, transparent);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  :root[data-theme="light"] .band { background: linear-gradient(90deg, transparent, rgba(143, 29, 44, 0.07) 20%, rgba(143, 29, 44, 0.10) 50%, rgba(143, 29, 44, 0.07) 80%, transparent); }
+  .band blockquote {
+    margin: 0 auto; max-width: 42rem;
+    font-family: var(--serif); font-style: italic; font-size: clamp(1.3rem, 3vw, 1.65rem); line-height: 1.45; color: var(--accent-2);
+  }
+  :root[data-theme="light"] .band blockquote { color: var(--accent); }
+  .band cite { display: block; margin-top: 0.9rem; font-family: var(--mono); font-style: normal; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+  /* Three pillars */
+  .sec-head { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 1.75rem; flex-wrap: wrap; }
+  .sec-head h2 {
+    font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 2.2rem); line-height: 1.15; font-weight: 500; margin: 0; letter-spacing: -0.01em;
+  }
+  .sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); min-width: 2rem; align-self: center; }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-bottom: 2rem; }
+  .pillar {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 1.4rem; border-top: 3px solid var(--accent);
+  }
+  .pillar .kicker { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .pillar h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; margin: 0 0 0.5rem; }
+  .pillar p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
+  footer { padding: 3rem 0; margin-top: 4rem; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--faint); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  footer a { color: var(--muted); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, .band, .pillars { animation: page-in .5s ease both; }
+    .band { animation-delay: .1s; }
+    .pillars { animation-delay: .2s; }
+    @keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* ============================================================
+     SMALL SCREENS
+     ============================================================ */
+  @media (max-width: 48rem) {
+    .hero { grid-template-columns: 1fr; padding: 2.5rem 0 3rem; gap: 1.75rem; }
+    .emblem { width: 8.5rem; height: 8.5rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .band { padding: 1.75rem 1rem; margin-bottom: 3rem; }
+    .brand { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Inline SVG icons, referenced with <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <!-- A drop falling into still water, with its ripples -->
+  <symbol id="i-drop" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-linecap="round">
+    <path d="M50 14 C50 14 36 32 36 42 a14 14 0 0 0 28 0 C64 32 50 14 50 14z" stroke-width="2.5" fill="currentColor" fill-opacity="0.18"/>
+    <ellipse cx="50" cy="72" rx="16" ry="4.5" stroke-width="2"/>
+    <ellipse cx="50" cy="72" rx="30" ry="8.5" stroke-width="1.5" opacity="0.65"/>
+    <ellipse cx="50" cy="72" rx="44" ry="12.5" stroke-width="1" opacity="0.35"/>
+  </symbol>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#home">Bautismo <span>de las creencias</span></a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#home" class="active" aria-current="page">Inicio</a>
+    </nav>
+    <button class="icon-btn" id="theme" type="button" aria-label="Cambiar entre tema oscuro y claro" title="Cambiar tema"><svg><use href="#i-sun"/></svg></button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ========================= INICIO ========================= -->
+  <section id="home">
+    <div class="hero">
+      <div class="emblem" aria-hidden="true"><svg><use href="#i-drop"/></svg></div>
+      <div>
+        <p class="eyebrow">Psicología · Filosofía · Proyecto</p>
+        <h1>Bautismo <em>de las creencias</em></h1>
+        <p class="lede">Un proyecto que nace de un libro y va más allá de él: una teoría psicológica y filosófica sobre cómo nacen, se nombran y se transforman nuestras creencias.</p>
+        <div class="links">
+          <a class="btn primary" href="#proyecto">Conocé el proyecto</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="band">
+      <blockquote>
+        [Aquí va una frase del libro que resuma el espíritu del proyecto.]
+        <cite>Bautismo de las creencias</cite>
+      </blockquote>
+    </div>
+
+    <div id="proyecto" class="sec-head"><h2>El proyecto</h2></div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="kicker">El fundamento</div>
+        <h3>El libro</h3>
+        <p>La base teórica del proyecto: una propuesta psicológica y filosófica sobre las creencias. [Breve descripción del libro.]</p>
+      </div>
+      <div class="pillar">
+        <div class="kicker">La expansión</div>
+        <h3>Más allá del libro</h3>
+        <p>El proyecto lleva la teoría a otros formatos y espacios. [Qué más incluye: charlas, talleres, escritos, etc.]</p>
+      </div>
+      <div class="pillar">
+        <div class="kicker">Quiénes somos</div>
+        <h3>Los autores</h3>
+        <p>Un proyecto de padre e hijo: [nombre del autor del libro] y Marcos Feole. [Breve presentación.]</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year">2026</span> Bautismo de las creencias</span>
+    <span><a href="#home">Inicio</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme (dark red by default; light is ivory)
+    if (load("theme") === "light") root.setAttribute("data-theme", "light");
+    document.getElementById("theme").addEventListener("click", function () {
+      var light = root.getAttribute("data-theme") === "light";
+      if (light) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "light");
+      store("theme", light ? "dark" : "light");
+    });
+  })();
+</script>
+</body>
+</html>
