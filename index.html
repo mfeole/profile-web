@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-notes="on">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -28,8 +28,6 @@
     --accent-ink: #140709;
     --accent-soft: rgba(224, 82, 95, 0.12);
     --glow: rgba(143, 29, 44, 0.55);
-    --note-a-lot: #f0a13a;
-      --note-bg: rgba(240, 161, 58, 0.08);
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -50,8 +48,6 @@
     --accent-ink: #fbf6f6;
     --accent-soft: rgba(158, 31, 47, 0.08);
     --glow: rgba(158, 31, 47, 0.18);
-    --note-a-lot: #b86400;
-    --note-bg: rgba(184, 100, 0, 0.06);
     color-scheme: light;
   }
 
@@ -278,28 +274,6 @@
   }
 
   /* ============================================================
-     REVIEW NOTES: the "please improve this" markers.
-     Shown while data-notes="on" is set on the root element;
-     delete the note blocks once each section is finished.
-     ============================================================ */
-  .note {
-    display: none; position: relative;
-    border: 1px dashed var(--note-a-lot); background: var(--note-bg);
-    border-radius: 10px; padding: 0.85rem 1rem 0.85rem 1rem; margin: 0 0 1.5rem;
-    font-size: 0.9rem; line-height: 1.55; color: var(--ink);
-  }
-  html[data-notes="on"] .note { display: block; }
-  .note::before {
-    content: "✎ Improve a lot"; display: inline-block; margin-bottom: 0.35rem;
-    font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--bg); background: var(--note-a-lot); padding: 0.1rem 0.5rem; border-radius: 4px;
-  }
-  .note ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
-  .note li { margin: 0.15rem 0; }
-  .note code { font-family: var(--mono); font-size: 0.82rem; }
-  html[data-notes="on"] .placeholder { outline: 1px dashed var(--note-a-lot); outline-offset: 4px; }
-
-  /* ============================================================
      SMALL SCREENS
      ============================================================ */
   @media (max-width: 64rem) {
@@ -341,7 +315,6 @@
     <nav class="nav" aria-label="Sections">
       <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
       <a href="#education">Education</a>
@@ -407,68 +380,9 @@
     </div>
   </section>
 
-  <!-- ========================= FEATURED WORK ========================= -->
-  <section id="work">
-    <div class="sec-head"><span class="sec-num">02</span><h2>Selected work</h2></div>
-
-    <div class="note">
-      <strong>Selected work: new section, needs your content.</strong> This is the most important section for a portfolio, and the old page didn't have it. The cards below are drafts based on your CV; please:
-      <ul>
-        <li>Keep 3 to 6 projects you are proudest of. For each: the problem, what you built, and the result (ideally with a number).</li>
-        <li>Add a link to each one: repo, report, demo, notebook, or blog post. A project with no link is much less convincing.</li>
-        <li>Optionally add a small image or diagram per card.</li>
-      </ul>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <div class="kicker">GenAI · Health insurance</div>
-        <h3>Process-intelligence assistant</h3>
-        <p>LLM + RAG applications at Medifé that detect problems and redundancies in internal processes and propose more efficient flows.</p>
-        <ul class="tags"><li>LLMs</li><li>RAG</li><li>Agents</li><li>Python</li></ul>
-        <a class="more placeholder" href="#">Add result or link →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Complexity economics · Public policy</div>
-        <h3>Export diversification models</h3>
-        <p>Machine learning and economic-complexity models at Fundar to identify export diversification opportunities for Argentina.</p>
-        <ul class="tags"><li>ML</li><li>Networks</li><li>Economic complexity</li></ul>
-        <a class="more" href="#publications">See the Economics publications →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">AI ethics · Public sector</div>
-        <h3>AI ethics protocols &amp; policy chatbots</h3>
-        <p>Research and protocols on the ethics of AI, plus RAG chatbot prototypes with vector stores, communicated to public-sector clients.</p>
-        <ul class="tags"><li>AI policy</li><li>RAG</li><li>Vector stores</li></ul>
-        <a class="more placeholder" href="#">Link to document →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">NLP · Customer experience</div>
-        <h3>Multilingual review classifier</h3>
-        <p>Deep learning NLP models at Medallia that classify customer-experience reviews in several languages (TensorFlow 1 and 2).</p>
-        <ul class="tags"><li>NLP</li><li>Deep learning</li><li>TensorFlow</li></ul>
-        <a class="more placeholder" href="#">Add scale or accuracy →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Finance · CME Group</div>
-        <h3>Tick size efficiency in FX futures</h3>
-        <p>Market microstructure models on CME foreign-exchange data to evaluate tick size efficiency, used for decision-making at CME.</p>
-        <ul class="tags"><li>Statistics</li><li>Microstructure</li><li>R / Python</li></ul>
-        <a class="more placeholder" href="#">Add outcome →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Ergodicity economics · Research</div>
-        <h3>Market stability &amp; ergodicity</h3>
-        <p>Summer research at the London Mathematical Laboratory (ICTP, Trieste) applying ergodicity economics to high-frequency trading data.</p>
-        <ul class="tags"><li>Stochastic processes</li><li>HFT data</li></ul>
-        <a class="more" href="https://drive.google.com/file/d/12ODYv46RL5FRpSbWd738Lw8JBLTkSfBL/view?usp=sharing" rel="noopener">Read the paper (PDF) →</a>
-      </article>
-    </div>
-  </section>
-
   <!-- ========================= EXPERIENCE ========================= -->
   <section id="experience">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2></div>
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
 
 
     <div class="filters">
@@ -563,7 +477,7 @@
 
   <!-- ========================= PUBLICATIONS ========================= -->
   <section id="publications">
-    <div class="sec-head"><span class="sec-num">04</span><h2>Publications</h2></div>
+    <div class="sec-head"><span class="sec-num">03</span><h2>Publications</h2></div>
 
 
     <div class="pub-group">
@@ -651,7 +565,7 @@
 
   <!-- ========================= EDUCATION ========================= -->
   <section id="education">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Education</h2></div>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Education</h2></div>
 
 
     <ul class="edu">
@@ -675,7 +589,7 @@
 
   <!-- ========================= SKILLS ========================= -->
   <section id="skills">
-    <div class="sec-head"><span class="sec-num">06</span><h2>Skills</h2></div>
+    <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
 
 
     <div class="skills">
