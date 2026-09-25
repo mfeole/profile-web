@@ -235,7 +235,8 @@
   .pubs h3 a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
   .pubs .year { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); padding-top: 0.2rem; }
   .pubs h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
-  .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0.5rem; }
+  .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0; }
+  .pubs .res { margin-top: 0.6rem; }
   .pubs .meta i { color: var(--ink); }
   .badge { display: inline-block; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.08rem 0.45rem; border-radius: 5px; border: 1px solid var(--accent-deep); color: var(--accent-2); margin-right: 0.4rem; vertical-align: 0.15em; }
   .res { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -278,8 +279,8 @@
 
   /* ============================================================
      REVIEW NOTES: the "please improve this" markers.
-     Toggle them with the "Notes" button, or remove
-     data-notes="on" from <html> before publishing.
+     Shown while data-notes="on" is set on the root element;
+     delete the note blocks once each section is finished.
      ============================================================ */
   .note {
     display: none; position: relative;
@@ -297,7 +298,6 @@
   .note li { margin: 0.15rem 0; }
   .note code { font-family: var(--mono); font-size: 0.82rem; }
   html[data-notes="on"] .placeholder { outline: 1px dashed var(--note-a-lot); outline-offset: 4px; }
-  #notes-toggle[aria-pressed="true"] { color: var(--note-a-lot); border-color: var(--note-a-lot); }
 
   /* ============================================================
      SMALL SCREENS
@@ -348,7 +348,6 @@
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="icon-btn" id="notes-toggle" type="button" aria-pressed="true" title="Show or hide the review notes">✎ Notes</button>
     <button class="icon-btn" id="theme" type="button" aria-label="Switch between dark and light theme" title="Switch theme"><svg><use href="#i-sun"/></svg></button>
   </div>
 </header>
@@ -380,8 +379,8 @@
 
   <div class="stats">
     <div class="stat"><b>8+</b><span>years in data science</span></div>
-    <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
     <div class="stat"><b>7</b><span>industries: health, policy, development, complexity and ergodicity economics, finance, CX, media, research</span></div>
+    <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
     <div class="stat"><b>3</b><span>languages: Spanish, English, German</span></div>
   </div>
   </section>
@@ -395,6 +394,7 @@
       <p>I'm a data scientist with 8+ years of experience turning data into models and knowledge for better decision-making. I combine <strong>mathematical, statistical, and computational modeling</strong> with hands-on <strong>engineering</strong>, and I care about shipping tools that work in production.</p>
       <p>My recent work centers on <strong>generative AI</strong>: LLMs, retrieval-augmented generation (RAG), agents, and chatbots that automate internal processes, uncover inefficiencies, and put software to the test. My path is diverse by design: at every crossroads I chose the project that interested me most, and the common thread has always been data, machine learning, and AI.</p>
       <p>Beyond work, I meditate, play guitar, read widely, and write essays in my newsletter, <a href="https://navegarte.substack.com/" rel="noopener">Navegarte</a>.</p>
+      <p>These are some of the specific areas and skills that I've worked on in the past:</p>
     </div>
 
     <div class="areas">
@@ -572,8 +572,10 @@
         <li>
           <div class="year">2024</div>
           <div>
-            <h3><a href="https://www.jstor.org/stable/48771911" rel="noopener">Argentina's green export potential: Evidence and Proposals for a Development Policy</a></h3>
-            <p class="meta">(El potencial exportador verde de la Argentina). Palazzo G, <i>Feole M</i>, et al. <em>Desarrollo Económico</em>.</p>
+            <h3><a href="https://www.jstor.org/stable/48771911" rel="noopener">El potencial exportador verde de la Argentina: un análisis del espacio productivo verde</a></h3>
+            <p class="meta">(Argentina's green export potential: Evidence and Proposals for a Development Policy)</p>
+            <p class="meta">Gabriel Palazzo, <i>Marcos Feole</i>, Matías Gutman &amp; Sabina Bercovich</p>
+            <p class="meta"><em>Desarrollo Económico</em>.</p>
             <div class="res"><a href="https://www.jstor.org/stable/48771911" rel="noopener">JSTOR</a><a href="https://revistas.ides.org.ar/desarrollo-economico/es/article/view/649" rel="noopener">IDES</a></div>
           </div>
         </li>
@@ -581,14 +583,14 @@
           <div class="year">2021–24</div>
           <div>
             <h3><a href="https://fund.ar/serie/complejidad-economica/" rel="noopener">Complexity Economics publications</a></h3>
-            <p class="meta">Fundar.</p>
+            <p class="meta">Fundar. Various authors.</p>
           </div>
         </li>
         <li>
           <div class="year">2021–24</div>
           <div>
             <h3><a href="https://fund.ar/equipo/marcos-feole/" rel="noopener">Other publications</a></h3>
-            <p class="meta">Fundar.</p>
+            <p class="meta">Fundar. Various authors.</p>
           </div>
         </li>
       </ul>
@@ -601,7 +603,8 @@
           <div class="year">2019</div>
           <div>
             <h3><a href="papers/Feole_2019_Optimal_leverage_in_high_frequency_trading.pdf">Optimal Leverage in High Frequency Trading Data</a></h3>
-            <p class="meta"><i>Feole M</i>.</p>
+            <p class="meta"><i>Feole Marcos</i></p>
+            <p class="meta">London Mathematical Laboratory Summer School Conference</p>
             <div class="res"><a href="papers/Feole_2019_Optimal_leverage_in_high_frequency_trading.pdf">PDF</a></div>
           </div>
         </li>
@@ -622,21 +625,24 @@
           <div class="year">2017</div>
           <div>
             <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/875/13/122001/meta" rel="noopener">Description of an elastic scattering process in the pilot-wave formulation</a></h3>
-            <p class="meta">Cordeiro Ballesteros DC, <i>Feole M</i>. <em>Journal of Physics: Conference Series</em>.</p>
+            <p class="meta">Cordeiro Ballesteros DC, <i>Feole M</i>.</p>
+            <p class="meta"><em>Journal of Physics: Conference Series</em>.</p>
           </div>
         </li>
         <li>
           <div class="year">2015</div>
           <div>
             <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/583/1/012026/meta" rel="noopener">When vortices and cusps meet</a></h3>
-            <p class="meta">Navarrete F, <i>Feole M</i>. <em>Journal of Physics: Conference Series</em>.</p>
+            <p class="meta">Navarrete F, <i>Feole M</i>.</p>
+            <p class="meta"><em>Journal of Physics: Conference Series</em>.</p>
           </div>
         </li>
         <li>
           <div class="year">2014</div>
           <div>
             <h3><a href="https://nuclea.cnea.gob.ar/items/9133f38e-cb35-41c1-b994-1d444423be37/full" rel="noopener">Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</a></h3>
-            <p class="meta"><i>Feole M</i>. MSc thesis (Tesis de Maestría en Ciencias Físicas), Balseiro Institute.</p>
+            <p class="meta"><i>Feole Marcos</i></p>
+            <p class="meta">Master of Science Thesis, at Balseiro Institute</p>
           </div>
         </li>
       </ul>
@@ -780,20 +786,6 @@
       var light = root.getAttribute("data-theme") === "light";
       if (light) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "light");
       store("theme", light ? "dark" : "light");
-    });
-
-    // Review notes toggle. Delete the button and data-notes="on" before publishing.
-    var notesBtn = document.getElementById("notes-toggle");
-    function setNotes(on) {
-      root.setAttribute("data-notes", on ? "on" : "off");
-      notesBtn.setAttribute("aria-pressed", on ? "true" : "false");
-    }
-    if (root.getAttribute("data-notes") !== "on") notesBtn.hidden = true;
-    else if (load("notes") === "off") setNotes(false);
-    notesBtn.addEventListener("click", function () {
-      var on = root.getAttribute("data-notes") !== "on";
-      setNotes(on);
-      store("notes", on ? "on" : "off");
     });
 
     // Filters (experience and publications)
