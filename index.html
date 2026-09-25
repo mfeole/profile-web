@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-notes="on">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -28,9 +28,6 @@
     --accent-ink: #140709;
     --accent-soft: rgba(224, 82, 95, 0.12);
     --glow: rgba(143, 29, 44, 0.55);
-    --note-a-lot: #f0a13a;
-    --note-a-little: #7fb8d8;
-    --note-bg: rgba(240, 161, 58, 0.08);
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -51,9 +48,6 @@
     --accent-ink: #fbf6f6;
     --accent-soft: rgba(158, 31, 47, 0.08);
     --glow: rgba(158, 31, 47, 0.18);
-    --note-a-lot: #b86400;
-    --note-a-little: #2a6f97;
-    --note-bg: rgba(184, 100, 0, 0.06);
     color-scheme: light;
   }
 
@@ -91,7 +85,7 @@
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
   }
-  .bar .wrap { display: flex; align-items: center; gap: 1.25rem; min-height: 3.75rem; }
+  .bar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 3.75rem; max-width: 76rem; }
   .brand {
     font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
     color: var(--ink); text-decoration: none; white-space: nowrap;
@@ -101,10 +95,10 @@
   .nav::-webkit-scrollbar { display: none; }
   .nav a {
     color: var(--muted); text-decoration: none; white-space: nowrap;
-    padding: 0.35rem 0.7rem; border-radius: 999px; transition: color .2s, background .2s;
+    padding: 0.35rem 0.6rem; border-radius: 999px; transition: color .2s, background .2s;
   }
   .nav a:hover { color: var(--ink); }
-  .nav a.active { color: var(--ink); background: var(--accent-soft); }
+  .nav a.active { color: var(--ink); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent-deep); }
   .icon-btn {
     font: inherit; font-size: 0.85rem; line-height: 1; color: var(--muted);
     background: none; border: 1px solid var(--line); border-radius: 999px;
@@ -152,6 +146,7 @@
   .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
   .btn.primary { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
   .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.static, .btn.static:hover { cursor: text; transform: none; background: var(--accent-deep); border-color: var(--accent-deep); }
 
   /* Stats strip */
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
@@ -162,7 +157,9 @@
   /* ============================================================
      SECTIONS
      ============================================================ */
+  main { min-height: calc(100vh - 12rem); }
   section { padding: 4.5rem 0 1rem; }
+  section#home { padding: 0; }
   .sec-head { display: flex; align-items: baseline; gap: 1rem; margin: 0 0 2rem; flex-wrap: wrap; }
   .sec-num { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
   h2 {
@@ -177,7 +174,7 @@
   .prose strong { font-weight: 600; color: var(--ink); }
 
   /* Focus areas (About) */
-  .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.9rem; margin: 1.75rem 0; }
+  .areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 1.75rem 0; }
   .area { border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; background: var(--card); }
   .area h3 { font-size: 0.98rem; color: var(--accent-2); margin-bottom: 0.3rem; }
   .area p { margin: 0; font-size: 0.92rem; color: var(--muted); }
@@ -224,13 +221,18 @@
   .tl ul.impact { margin: 0 0 0.6rem; padding-left: 1.1rem; color: var(--muted); max-width: 40rem; }
   .tl ul.impact li::marker { color: var(--accent); }
 
-  /* Publications / talks list */
+  /* Publications list */
   .pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .pubs > li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
   .pubs > li[hidden] { display: none; }
+  .pub-group + .pub-group { margin-top: 2.5rem; }
+  .pub-field { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 0 0 0.75rem; }
+  .pubs h3 a { color: var(--ink); text-decoration-color: var(--accent-deep); }
+  .pubs h3 a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
   .pubs .year { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); padding-top: 0.2rem; }
   .pubs h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 500; }
-  .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0.5rem; }
+  .pubs .meta { color: var(--muted); font-size: 0.92rem; margin: 0.2rem 0 0; }
+  .pubs .res { margin-top: 0.6rem; }
   .pubs .meta i { color: var(--ink); }
   .badge { display: inline-block; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.08rem 0.45rem; border-radius: 5px; border: 1px solid var(--accent-deep); color: var(--accent-2); margin-right: 0.4rem; vertical-align: 0.15em; }
   .res { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -267,44 +269,22 @@
 
   /* Reveal on scroll */
   @media (prefers-reduced-motion: no-preference) {
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    main > section.current { animation: page-in .35s ease; }
+    @keyframes page-in { from { opacity: 0.4; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   }
-
-  /* ============================================================
-     REVIEW NOTES: the "please improve this" markers.
-     Toggle them with the "Notes" button, or remove
-     data-notes="on" from <html> before publishing.
-     ============================================================ */
-  .note {
-    display: none; position: relative;
-    border: 1px dashed var(--note-a-lot); background: var(--note-bg);
-    border-radius: 10px; padding: 0.85rem 1rem 0.85rem 1rem; margin: 0 0 1.5rem;
-    font-size: 0.9rem; line-height: 1.55; color: var(--ink);
-  }
-  html[data-notes="on"] .note { display: block; }
-  .note::before {
-    content: "✎ Improve a lot"; display: inline-block; margin-bottom: 0.35rem;
-    font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--bg); background: var(--note-a-lot); padding: 0.1rem 0.5rem; border-radius: 4px;
-  }
-  .note.little { border-color: var(--note-a-little); background: color-mix(in srgb, var(--note-a-little) 7%, transparent); }
-  .note.little::before { content: "✎ Improve a little"; background: var(--note-a-little); }
-  .note ul { margin: 0.2rem 0 0; padding-left: 1.1rem; }
-  .note li { margin: 0.15rem 0; }
-  .note code { font-family: var(--mono); font-size: 0.82rem; }
-  html[data-notes="on"] .placeholder { outline: 1px dashed var(--note-a-lot); outline-offset: 4px; }
-  #notes-toggle[aria-pressed="true"] { color: var(--note-a-lot); border-color: var(--note-a-lot); }
 
   /* ============================================================
      SMALL SCREENS
      ============================================================ */
-  @media (max-width: 48rem) {
+  @media (max-width: 64rem) {
     .bar .wrap { flex-wrap: wrap; padding-top: 0.5rem; padding-bottom: 0.5rem; gap: 0.4rem 0.6rem; }
     .brand { order: 1; margin-right: auto; }
     .icon-btn { order: 2; }
-    .nav { order: 3; width: 100%; margin: 0 -0.7rem; }
+    .nav { order: 3; width: 100%; margin: 0 -0.6rem; }
     html { scroll-padding-top: 7rem; }
+  }
+  @media (max-width: 48rem) {
+    .areas { grid-template-columns: 1fr; }
     .hero { grid-template-columns: 1fr; padding: 2.5rem 0 2.5rem; gap: 1.75rem; }
     .avatar { width: 8rem; height: 8rem; font-size: 2.6rem; }
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -324,37 +304,33 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="i-in" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11.2 22 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.52-2.25 3.1V21h-4z"/></symbol>
-  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.7 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></symbol>
   <symbol id="i-scholar" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zm-6.18 9.1v4L12 20l6.18-3.9v-4L12 16l-6.18-3.9z"/></symbol>
   <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
 </svg>
 
 <header class="bar">
   <div class="wrap">
-    <a class="brand" href="#top">Marcos <span>Feole</span></a>
+    <a class="brand" href="#home">Marcos <span>Feole</span></a>
     <nav class="nav" aria-label="Sections">
+      <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
-      <a href="#talks">Talks</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="icon-btn" id="notes-toggle" type="button" aria-pressed="true" title="Show or hide the review notes">✎ Notes</button>
     <button class="icon-btn" id="theme" type="button" aria-label="Switch between dark and light theme" title="Switch theme"><svg><use href="#i-sun"/></svg></button>
   </div>
 </header>
 
-<main id="top" class="wrap">
+<main class="wrap">
 
-  <!-- ========================= HERO ========================= -->
+  <!-- ========================= HOME ========================= -->
+  <section id="home">
   <div class="hero">
-    <!-- To use a photo: replace "MF" with <img src="photo.jpg" alt="Marcos Feole"> -->
-    <div class="avatar" role="img" aria-label="Marcos Feole">MF</div>
+    <div class="avatar"><img src="photo.jpg" alt="Marcos Feole" width="640" height="640"></div>
     <div>
       <p class="eyebrow">Data Scientist · Statistician · Physicist</p>
       <h1>Marcos <em>Feole</em></h1>
@@ -365,49 +341,33 @@
         <li>MS Physics, Balseiro Institute</li>
       </ul>
       <div class="links">
-        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>Email</a>
+        <span class="btn primary static"><svg><use href="#i-mail"/></svg>mmfeole at gmail dot com</span>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
-        <a class="btn placeholder" href="https://github.com/mfeole" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
-        <a class="btn placeholder" href="#" rel="noopener"><svg><use href="#i-scholar"/></svg>Scholar</a>
+        <a class="btn" href="https://scholar.google.com/citations?user=_TVFG4QAAAAJ&amp;hl=es" rel="noopener"><svg><use href="#i-scholar"/></svg>Google Scholar</a>
         <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Newsletter</a>
-        <a class="btn placeholder" href="cv.pdf"><svg><use href="#i-doc"/></svg>CV (PDF)</a>
       </div>
     </div>
   </div>
 
-  <div class="note little">
-    <strong>Hero.</strong> Good base, but:
-    <ul>
-      <li>Replace the "MF" initials with a real, well-lit photo (square, at least 600&times;600 px, saved as <code>photo.jpg</code>).</li>
-      <li>Check the GitHub link, add your Google Scholar / ORCID / ResearchGate link (or delete that button), and upload a <code>cv.pdf</code> next to this file.</li>
-      <li>Check the numbers in the stats strip below; swap any of them for a stronger one (e.g. models in production, reports published, people trained).</li>
-      <li>Consider a sharper one-line value proposition: what problem you solve and for whom (e.g. "GenAI and ML for health, public policy, and finance").</li>
-    </ul>
-  </div>
 
-  <div class="stats reveal">
+  <div class="stats">
     <div class="stat"><b>8+</b><span>years in data science</span></div>
+    <div class="stat"><b>7</b><span>industries: health, policy, development, complexity and ergodicity economics, finance, CX, media, research</span></div>
     <div class="stat"><b>3</b><span>graduate &amp; undergraduate degrees</span></div>
-    <div class="stat"><b>6</b><span>industries: health, policy, finance, CX, media, research</span></div>
     <div class="stat"><b>3</b><span>languages: Spanish, English, German</span></div>
   </div>
+  </section>
 
   <!-- ========================= ABOUT ========================= -->
-  <section id="about" class="reveal">
+  <section id="about">
     <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
 
-    <div class="note little">
-      <strong>About.</strong> The content is solid, but it was a long wall of text. I shortened it and moved the domain list into the cards below. Still to do:
-      <ul>
-        <li>Open with one concrete achievement (a number, a result, a client impact) instead of a general statement.</li>
-        <li>Say in one sentence what kind of role or project you are looking for now.</li>
-      </ul>
-    </div>
 
     <div class="prose">
       <p>I'm a data scientist with 8+ years of experience turning data into models and knowledge for better decision-making. I combine <strong>mathematical, statistical, and computational modeling</strong> with hands-on <strong>engineering</strong>, and I care about shipping tools that work in production.</p>
       <p>My recent work centers on <strong>generative AI</strong>: LLMs, retrieval-augmented generation (RAG), agents, and chatbots that automate internal processes, uncover inefficiencies, and put software to the test. My path is diverse by design: at every crossroads I chose the project that interested me most, and the common thread has always been data, machine learning, and AI.</p>
       <p>Beyond work, I meditate, play guitar, read widely, and write essays in my newsletter, <a href="https://navegarte.substack.com/" rel="noopener">Navegarte</a>.</p>
+      <p>These are some of the specific areas and skills that I've worked on in the past:</p>
     </div>
 
     <div class="areas">
@@ -415,82 +375,15 @@
       <div class="area"><h3>Economics research</h3><p>ML with Complexity Economics (Hidalgo &amp; Hausmann) and Ergodicity Economics (Peters &amp; Adamou).</p></div>
       <div class="area"><h3>AI safety &amp; policy</h3><p>Protocols and recommendations for public-sector clients.</p></div>
       <div class="area"><h3>Customer analytics</h3><p>Multilingual NLP for predictive analytics and customer understanding.</p></div>
-      <div class="area"><h3>Finance</h3><p>Market microstructure and statistical modeling of trading data.</p></div>
+      <div class="area"><h3>Computational finance</h3><p>Market microstructure modeling, efficient tick-size performance prediction, and statistical modeling of trading data.</p></div>
       <div class="area"><h3>Data engineering</h3><p>ETL pipelines and OLAP for a microservices video-on-demand platform.</p></div>
     </div>
   </section>
 
-  <!-- ========================= FEATURED WORK ========================= -->
-  <section id="work" class="reveal">
-    <div class="sec-head"><span class="sec-num">02</span><h2>Selected work</h2></div>
-
-    <div class="note">
-      <strong>Selected work: new section, needs your content.</strong> This is the most important section for a portfolio, and the old page didn't have it. The cards below are drafts based on your CV; please:
-      <ul>
-        <li>Keep 3 to 6 projects you are proudest of. For each: the problem, what you built, and the result (ideally with a number).</li>
-        <li>Add a link to each one: repo, report, demo, notebook, or blog post. A project with no link is much less convincing.</li>
-        <li>Optionally add a small image or diagram per card.</li>
-      </ul>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <div class="kicker">GenAI · Health insurance</div>
-        <h3>Process-intelligence assistant</h3>
-        <p>LLM + RAG applications at Medifé that detect problems and redundancies in internal processes and propose more efficient flows.</p>
-        <ul class="tags"><li>LLMs</li><li>RAG</li><li>Agents</li><li>Python</li></ul>
-        <a class="more placeholder" href="#">Add result or link →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Complexity economics · Public policy</div>
-        <h3>Export diversification models</h3>
-        <p>Machine learning and economic-complexity models at Fundar to identify export diversification opportunities for Argentina.</p>
-        <ul class="tags"><li>ML</li><li>Networks</li><li>Economic complexity</li></ul>
-        <a class="more placeholder" href="#">Link to Fundar report →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">AI ethics · Public sector</div>
-        <h3>AI ethics protocols &amp; policy chatbots</h3>
-        <p>Research and protocols on the ethics of AI, plus RAG chatbot prototypes with vector stores, communicated to public-sector clients.</p>
-        <ul class="tags"><li>AI policy</li><li>RAG</li><li>Vector stores</li></ul>
-        <a class="more placeholder" href="#">Link to document →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">NLP · Customer experience</div>
-        <h3>Multilingual review classifier</h3>
-        <p>Deep learning NLP models at Medallia that classify customer-experience reviews in several languages (TensorFlow 1 and 2).</p>
-        <ul class="tags"><li>NLP</li><li>Deep learning</li><li>TensorFlow</li></ul>
-        <a class="more placeholder" href="#">Add scale or accuracy →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Finance · CME Group</div>
-        <h3>Tick size efficiency in FX futures</h3>
-        <p>Market microstructure models on CME foreign-exchange data to evaluate tick size efficiency, used for decision-making at CME.</p>
-        <ul class="tags"><li>Statistics</li><li>Microstructure</li><li>R / Python</li></ul>
-        <a class="more placeholder" href="#">Add outcome →</a>
-      </article>
-      <article class="card">
-        <div class="kicker">Ergodicity economics · Research</div>
-        <h3>Market stability &amp; ergodicity</h3>
-        <p>Summer research at the London Mathematical Laboratory (ICTP, Trieste) applying ergodicity economics to high-frequency trading data.</p>
-        <ul class="tags"><li>Stochastic processes</li><li>HFT data</li></ul>
-        <a class="more placeholder" href="#">Link to notes or slides →</a>
-      </article>
-    </div>
-  </section>
-
   <!-- ========================= EXPERIENCE ========================= -->
-  <section id="experience" class="reveal">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Experience</h2></div>
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
 
-    <div class="note little">
-      <strong>Experience.</strong> The timeline and the filter work well. To make it stronger:
-      <ul>
-        <li>Most entries describe <em>tasks</em>. Rewrite 1 or 2 bullets per role as <em>impact</em>: "reduced X by Y%", "used by N analysts", "adopted by ministry Z".</li>
-        <li>The Quantit/Medifé role (2025 to 2026) is your most recent one; it deserves 2 or 3 concrete bullets.</li>
-        <li>Consider grouping the short teaching roles so they don't take as much space as the full-time jobs.</li>
-      </ul>
-    </div>
 
     <div class="filters">
       <div class="seg" role="group" aria-label="Filter experience">
@@ -583,132 +476,128 @@
   </section>
 
   <!-- ========================= PUBLICATIONS ========================= -->
-  <section id="publications" class="reveal">
-    <div class="sec-head"><span class="sec-num">04</span><h2>Publications &amp; reports</h2></div>
+  <section id="publications">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Publications</h2></div>
 
-    <div class="note">
-      <strong>Publications: new section, needs your content.</strong> I did not want to invent titles, so every entry here is a placeholder, marked with a dashed outline. Please:
-      <ul>
-        <li>Add your papers, Fundar reports and working papers, your MS thesis (Balseiro), and any technical reports, newest first.</li>
-        <li>Use the format: authors (<em>your name in italics</em>), title, venue, year, and links (PDF, DOI, code).</li>
-        <li>Set <code>data-type</code> on each item to <code>paper</code>, <code>report</code>, or <code>thesis</code> so the filter works.</li>
+
+    <div class="pub-group">
+      <h3 class="pub-field">Economics</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2024</div>
+          <div>
+            <h3><a href="https://www.jstor.org/stable/48771911" rel="noopener">El potencial exportador verde de la Argentina: un análisis del espacio productivo verde</a></h3>
+            <p class="meta">(Argentina's green export potential: Evidence and Proposals for a Development Policy)</p>
+            <p class="meta">Gabriel Palazzo, <i>Marcos Feole</i>, Matías Gutman &amp; Sabina Bercovich</p>
+            <p class="meta"><em>Desarrollo Económico</em>.</p>
+            <div class="res"><a href="https://www.jstor.org/stable/48771911" rel="noopener">JSTOR</a><a href="https://revistas.ides.org.ar/desarrollo-economico/es/article/view/649" rel="noopener">IDES</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="year">2021</div>
+          <div>
+            <h3><a href="https://complejidadeconomicaverde.fund.ar/" rel="noopener">Complejidad Económica Verde: fundamentos y simulador de vuelo</a></h3>
+            <p class="meta">El Gato y La Caja + Fundar. Various authors.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2021–24</div>
+          <div>
+            <h3><a href="https://fund.ar/serie/complejidad-economica/" rel="noopener">Complexity Economics publications</a></h3>
+            <p class="meta">Fundar. Various authors.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2021–24</div>
+          <div>
+            <h3><a href="https://fund.ar/equipo/marcos-feole/" rel="noopener">Other publications</a></h3>
+            <p class="meta">Fundar. Various authors.</p>
+          </div>
+        </li>
       </ul>
     </div>
 
-    <div class="filters">
-      <div class="seg" role="group" aria-label="Filter publications">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
-        <button type="button" data-filter="report" aria-pressed="false">Reports</button>
-        <button type="button" data-filter="thesis" aria-pressed="false">Theses</button>
-      </div>
+    <div class="pub-group">
+      <h3 class="pub-field">Finance</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2019</div>
+          <div>
+            <h3><a href="https://drive.google.com/file/d/12ODYv46RL5FRpSbWd738Lw8JBLTkSfBL/view?usp=sharing" rel="noopener">Optimal Leverage in High Frequency Trading Data</a></h3>
+            <p class="meta"><i>Feole Marcos</i></p>
+            <p class="meta">London Mathematical Laboratory Summer School Conference</p>
+            <div class="res"><a href="https://drive.google.com/file/d/12ODYv46RL5FRpSbWd738Lw8JBLTkSfBL/view?usp=sharing" rel="noopener">PDF</a></div>
+          </div>
+        </li>
+        <li>
+          <div class="year">2018</div>
+          <div>
+            <h3>Studying the impact of a tick size change: market microstructure research for FX markets</h3>
+            <p class="meta">CME Group Inc.</p>
+          </div>
+        </li>
+      </ul>
     </div>
 
-    <ul class="pubs" data-list="publications">
-      <li data-type="report" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Report</span>[Title of Fundar report on export diversification / economic complexity]</h3>
-          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Web</a><a href="#">Code</a></div>
-        </div>
-      </li>
-      <li data-type="report" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Report</span>[Title of Fundar document on AI ethics / AI in the public sector]</h3>
-          <p class="meta"><i>M. Feole</i>, [co-authors]. Fundar, Buenos Aires.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Web</a></div>
-        </div>
-      </li>
-      <li data-type="paper" class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Paper</span>[Paper title]</h3>
-          <p class="meta">[Authors, with <i>M. Feole</i>]. <em>[Journal or conference]</em>.</p>
-          <div class="res"><a href="#">DOI</a><a href="#">arXiv</a><a href="#">PDF</a></div>
-        </div>
-      </li>
-      <li data-type="thesis" class="placeholder">
-        <div class="year">2014</div>
-        <div>
-          <h3><span class="badge">Thesis</span>[MS thesis title: atomic and molecular quantum physics models]</h3>
-          <p class="meta"><i>M. Feole</i>. MS in Physics, Balseiro Institute / CNEA, Bariloche. Grade: Outstanding.</p>
-          <div class="res"><a href="#">PDF</a><a href="#">Repository</a></div>
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ========================= TALKS ========================= -->
-  <section id="talks" class="reveal">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Talks, teaching &amp; writing</h2></div>
-
-    <div class="note">
-      <strong>Talks: new section, needs your content.</strong> List conference talks, meetups, webinars, panels, guest lectures, and podcasts, with event, city, date, and a link to slides or video. If you have few talks, keep the newsletter and teaching entries here so the section doesn't look empty.
+    <div class="pub-group">
+      <h3 class="pub-field">Physics</h3>
+      <ul class="pubs">
+        <li>
+          <div class="year">2017</div>
+          <div>
+            <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/875/13/122001/meta" rel="noopener">Description of an elastic scattering process in the pilot-wave formulation</a></h3>
+            <p class="meta">Cordeiro Ballesteros DC, <i>Feole M</i>.</p>
+            <p class="meta"><em>Journal of Physics: Conference Series</em>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2015</div>
+          <div>
+            <h3><a href="https://iopscience.iop.org/article/10.1088/1742-6596/583/1/012026/meta" rel="noopener">When vortices and cusps meet</a></h3>
+            <p class="meta">Navarrete F, <i>Feole M</i>.</p>
+            <p class="meta"><em>Journal of Physics: Conference Series</em>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="year">2014</div>
+          <div>
+            <h3><a href="https://drive.google.com/file/d/1qRY4axO0dSM6_AqpZSoSvy2SrbLHZZ2V/view?usp=sharing" rel="noopener">Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</a></h3>
+            <p class="meta"><i>Feole Marcos</i></p>
+            <p class="meta">Master of Science Thesis, at Balseiro Institute</p>
+          </div>
+        </li>
+      </ul>
     </div>
-
-    <ul class="pubs">
-      <li class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Talk</span>[Talk title, e.g. "RAG in practice: lessons from the public and health sectors"]</h3>
-          <p class="meta">[Event name], [City]. </p>
-          <div class="res"><a href="#">Slides</a><a href="#">Video</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="year">Ongoing</div>
-        <div>
-          <h3><span class="badge">Writing</span>Navegarte</h3>
-          <p class="meta">Newsletter with essays on a variety of topics.</p>
-          <div class="res"><a href="https://navegarte.substack.com/" rel="noopener">Read on Substack</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="year">2024</div>
-        <div>
-          <h3><span class="badge">Teaching</span>Neuroscience and Decision Making</h3>
-          <p class="meta">Special projects for the course, Torcuato Di Tella University.</p>
-        </div>
-      </li>
-    </ul>
   </section>
 
   <!-- ========================= EDUCATION ========================= -->
-  <section id="education" class="reveal">
-    <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Education</h2></div>
 
-    <div class="note little">
-      <strong>Education.</strong> Nearly done. Add your MS thesis title (and a link if it's online), and consider adding relevant courses or certifications from the last few years (e.g. GenAI or cloud).
-    </div>
 
     <ul class="edu">
       <li>
         <div class="when">2017 – 2019</div>
-        <h3>MS in Statistics and Analytics</h3>
-        <p>University of Illinois at Urbana-Champaign, USA. Fulbright Scholarship. GPA 3.89/4.0.</p>
+        <h3>Master of Science (MS) in Statistics and Analytics</h3>
+        <p>University of Illinois at Urbana-Champaign, USA<br>Fulbright Scholarship<br>GPA 3.89/4.0</p>
       </li>
       <li>
         <div class="when">2013 – 2014</div>
-        <h3>MS in Physics</h3>
-        <p>Balseiro Institute, Bariloche, Argentina. CNEA Scholarship. GPA 9.00/10. Thesis grade: Outstanding.</p>
+        <h3>Master of Science (MS) in Physics</h3>
+        <p>Balseiro Institute, Bariloche, Argentina<br>CNEA Scholarship<br>GPA 9.00/10<br>Thesis: <a href="https://drive.google.com/file/d/1qRY4axO0dSM6_AqpZSoSvy2SrbLHZZ2V/view?usp=sharing" rel="noopener"><em>Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</em></a> (grade: Outstanding)</p>
       </li>
       <li>
         <div class="when">2008 – 2013</div>
         <h3>Licenciatura (BS) in Physics</h3>
-        <p>Balseiro Institute, Bariloche. Five-year degree; first two years at the University of Buenos Aires. CNEA Scholarship. GPA 8.05/10.</p>
+        <p>Balseiro Institute, Bariloche, Argentina<br>Five-year degree; first two years at the University of Buenos Aires<br>CNEA Scholarship<br>GPA 8.05/10</p>
       </li>
     </ul>
   </section>
 
   <!-- ========================= SKILLS ========================= -->
-  <section id="skills" class="reveal">
-    <div class="sec-head"><span class="sec-num">07</span><h2>Skills</h2></div>
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Skills</h2></div>
 
-    <div class="note little">
-      <strong>Skills.</strong> Now grouped into chips (outlined = strongest). Check that the list is current: cloud platforms (AWS, GCP, Azure), LLM frameworks (LangChain, LlamaIndex, OpenAI or Anthropic APIs), MLOps tools, Docker, and dashboards are common things recruiters look for. Remove anything you would not want to be interviewed on.
-    </div>
 
     <div class="skills">
       <div class="skill">
@@ -733,19 +622,19 @@
       </div>
       <div class="skill">
         <h3>Languages &amp; citizenship</h3>
-        <p>Spanish (native) · English (proficient; TOEFL 106/120; GRE Quant 170/170, Verbal 162/170) · German (advanced; Sprachdiplom II). German and Argentinian citizen.</p>
+        <p>Spanish (native)<br>English (proficient; TOEFL 106/120; GRE Quant 170/170, Verbal 162/170)<br>German (advanced; Sprachdiplom II)<br>German and Argentinian citizen</p>
       </div>
     </div>
   </section>
 
   <!-- ========================= CONTACT ========================= -->
-  <section id="contact" class="reveal">
+  <section id="contact">
     <div class="contact">
       <p class="eyebrow">Get in touch</p>
       <h2>Let's work together</h2>
-      <p>I'm open to new opportunities in data science, machine learning, and applied AI. Email and LinkedIn are the best ways to reach me.</p>
+      <p>I'm open to new opportunities in data science, machine learning, and applied AI.<br>Email and LinkedIn are the best ways to reach me.</p>
       <div class="links">
-        <a class="btn primary" href="mailto:mmfeole@gmail.com"><svg><use href="#i-mail"/></svg>mmfeole@gmail.com</a>
+        <a class="btn primary js-mail" href="#contact" data-u="mmfeole" data-d="gmail.com"><svg><use href="#i-mail"/></svg>mmfeole at gmail dot com</a>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
         <a class="btn" href="https://navegarte.substack.com/" rel="noopener"><svg><use href="#i-pen"/></svg>Navegarte</a>
       </div>
@@ -757,7 +646,7 @@
 <footer>
   <div class="wrap">
     <span>&copy; <span id="year">2026</span> Marcos Feole</span>
-    <span>Buenos Aires · <a href="#top">Back to top ↑</a></span>
+    <span>Buenos Aires · <a href="#home">Home</a></span>
   </div>
 </footer>
 
@@ -769,26 +658,20 @@
 
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Email: the address is only assembled on click, so it never appears in the HTML
+    document.querySelectorAll(".js-mail").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = "mailto:" + a.getAttribute("data-u") + "@" + a.getAttribute("data-d");
+      });
+    });
+
     // Theme (dark red by default)
     if (load("theme") === "light") root.setAttribute("data-theme", "light");
     document.getElementById("theme").addEventListener("click", function () {
       var light = root.getAttribute("data-theme") === "light";
       if (light) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "light");
       store("theme", light ? "dark" : "light");
-    });
-
-    // Review notes toggle. Delete the button and data-notes="on" before publishing.
-    var notesBtn = document.getElementById("notes-toggle");
-    function setNotes(on) {
-      root.setAttribute("data-notes", on ? "on" : "off");
-      notesBtn.setAttribute("aria-pressed", on ? "true" : "false");
-    }
-    if (root.getAttribute("data-notes") !== "on") notesBtn.hidden = true;
-    else if (load("notes") === "off") setNotes(false);
-    notesBtn.addEventListener("click", function () {
-      var on = root.getAttribute("data-notes") !== "on";
-      setNotes(on);
-      store("notes", on ? "on" : "off");
     });
 
     // Filters (experience and publications)
@@ -805,27 +688,41 @@
       });
     });
 
-    // Highlight the current section in the nav, and reveal sections on scroll
-    if ("IntersectionObserver" in window) {
-      var links = {};
-      document.querySelectorAll(".nav a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (!e.isIntersecting || !links[e.target.id]) return;
-          Object.keys(links).forEach(function (k) { links[k].classList.toggle("active", k === e.target.id); });
-        });
-      }, { rootMargin: "-40% 0px -55% 0px" });
-      document.querySelectorAll("main section[id]").forEach(function (s) { spy.observe(s); });
-
-      var rev = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("in"); rev.unobserve(e.target); }
-        });
-      }, { rootMargin: "0px 0px -8% 0px" });
-      document.querySelectorAll(".reveal").forEach(function (el) { rev.observe(el); });
-    } else {
-      document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+    // Pages: show one section at a time, chosen from the top bar. Home is the default.
+    var pages = document.querySelectorAll("main > section[id]");
+    var navLinks = document.querySelectorAll(".nav a");
+    function isPage(id) {
+      var el = id && document.getElementById(id);
+      return !!el && el.parentNode.tagName === "MAIN";
     }
+    function show(id) {
+      if (!isPage(id)) id = "home";
+      pages.forEach(function (sec) {
+        var on = sec.id === id;
+        sec.hidden = !on;
+        sec.classList.toggle("current", on);
+      });
+      navLinks.forEach(function (a) {
+        var on = a.getAttribute("href") === "#" + id;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+        if (on && a.scrollIntoView) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+      });
+      window.scrollTo(0, 0);
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute("href").slice(1);
+      if (!isPage(id)) return;
+      e.preventDefault();
+      show(id);
+      try { history.pushState(null, "", "#" + id); } catch (err) {}
+    });
+    function fromHash() { show(location.hash.slice(1)); }
+    window.addEventListener("popstate", fromHash);
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
   })();
 </script>
 </body>

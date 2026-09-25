@@ -6,15 +6,13 @@ Personal profile and portfolio page for Marcos Feole: a single static `index.htm
 
 Open `index.html` in a browser, or serve the folder with `python3 -m http.server`.
 
-## Review notes
+## Files
 
-Sections that still need work carry dashed **"Improve a lot"** (orange) or **"Improve a little"** (blue) notes, and placeholder content has a dashed outline. The **✎ Notes** button in the top bar hides or shows them.
+Keep `photo.jpg` next to `index.html`; the page loads it.
 
-Before publishing:
+## Branches
 
-1. Fill in the placeholders: photo, links, projects, publications, and talks.
-2. Delete the `<div class="note ...">` blocks, or change `data-notes="on"` to `data-notes="off"` on the `<html>` tag. That hides the notes and the Notes button.
-3. Add `photo.jpg` and `cv.pdf` next to `index.html` if the page links to them.
+The `selected_works` branch keeps a version of the page with a "Selected work" section (project cards still waiting for results and links). It is parked there and not part of the published page.
 
 ## Deploy
 
