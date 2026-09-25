@@ -178,7 +178,7 @@
   .prose strong { font-weight: 600; color: var(--ink); }
 
   /* Focus areas (About) */
-  .areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.9rem; margin: 1.75rem 0; }
+  .areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 1.75rem 0; }
   .area { border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.1rem; background: var(--card); }
   .area h3 { font-size: 0.98rem; color: var(--accent-2); margin-bottom: 0.3rem; }
   .area p { margin: 0; font-size: 0.92rem; color: var(--muted); }
@@ -225,7 +225,7 @@
   .tl ul.impact { margin: 0 0 0.6rem; padding-left: 1.1rem; color: var(--muted); max-width: 40rem; }
   .tl ul.impact li::marker { color: var(--accent); }
 
-  /* Publications / talks list */
+  /* Publications list */
   .pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .pubs > li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
   .pubs > li[hidden] { display: none; }
@@ -310,6 +310,7 @@
     html { scroll-padding-top: 7rem; }
   }
   @media (max-width: 48rem) {
+    .areas { grid-template-columns: 1fr; }
     .hero { grid-template-columns: 1fr; padding: 2.5rem 0 2.5rem; gap: 1.75rem; }
     .avatar { width: 8rem; height: 8rem; font-size: 2.6rem; }
     .stats { grid-template-columns: repeat(2, 1fr); }
@@ -343,7 +344,6 @@
       <a href="#work">Work</a>
       <a href="#experience">Experience</a>
       <a href="#publications">Publications</a>
-      <a href="#talks">Talks</a>
       <a href="#education">Education</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
@@ -640,7 +640,7 @@
         <li>
           <div class="year">2014</div>
           <div>
-            <h3><a href="https://nuclea.cnea.gob.ar/items/9133f38e-cb35-41c1-b994-1d444423be37/full" rel="noopener">Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</a></h3>
+            <h3><a href="papers/tesis_maestria_ciencias_fisicas_feole_marcos.pdf">Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</a></h3>
             <p class="meta"><i>Feole Marcos</i></p>
             <p class="meta">Master of Science Thesis, at Balseiro Institute</p>
           </div>
@@ -649,68 +649,33 @@
     </div>
   </section>
 
-  <!-- ========================= TALKS ========================= -->
-  <section id="talks">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Talks, teaching &amp; writing</h2></div>
-
-    <div class="note">
-      <strong>Talks: new section, needs your content.</strong> List conference talks, meetups, webinars, panels, guest lectures, and podcasts, with event, city, date, and a link to slides or video. If you have few talks, keep the newsletter and teaching entries here so the section doesn't look empty.
-    </div>
-
-    <ul class="pubs">
-      <li class="placeholder">
-        <div class="year">20XX</div>
-        <div>
-          <h3><span class="badge">Talk</span>[Talk title, e.g. "RAG in practice: lessons from the public and health sectors"]</h3>
-          <p class="meta">[Event name], [City]. </p>
-          <div class="res"><a href="#">Slides</a><a href="#">Video</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="year">Ongoing</div>
-        <div>
-          <h3><span class="badge">Writing</span>Navegarte</h3>
-          <p class="meta">Newsletter with essays on a variety of topics.</p>
-          <div class="res"><a href="https://navegarte.substack.com/" rel="noopener">Read on Substack</a></div>
-        </div>
-      </li>
-      <li>
-        <div class="year">2024</div>
-        <div>
-          <h3><span class="badge">Teaching</span>Neuroscience and Decision Making</h3>
-          <p class="meta">Special projects for the course, Torcuato Di Tella University.</p>
-        </div>
-      </li>
-    </ul>
-  </section>
-
   <!-- ========================= EDUCATION ========================= -->
   <section id="education">
-    <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
+    <div class="sec-head"><span class="sec-num">05</span><h2>Education</h2></div>
 
 
     <ul class="edu">
       <li>
         <div class="when">2017 – 2019</div>
         <h3>MS in Statistics and Analytics</h3>
-        <p>University of Illinois at Urbana-Champaign, USA. Fulbright Scholarship. GPA 3.89/4.0.</p>
+        <p>University of Illinois at Urbana-Champaign, USA<br>Fulbright Scholarship<br>GPA 3.89/4.0</p>
       </li>
       <li>
         <div class="when">2013 – 2014</div>
         <h3>MS in Physics</h3>
-        <p>Balseiro Institute, Bariloche, Argentina. CNEA Scholarship. GPA 9.00/10. Thesis: <a href="https://nuclea.cnea.gob.ar/items/9133f38e-cb35-41c1-b994-1d444423be37/full" rel="noopener"><em>Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</em></a> (grade: Outstanding).</p>
+        <p>Balseiro Institute, Bariloche, Argentina<br>CNEA Scholarship<br>GPA 9.00/10<br>Thesis: <a href="papers/tesis_maestria_ciencias_fisicas_feole_marcos.pdf"><em>Teoría cuántica de colisiones en la formulación de De Broglie-Bohm</em></a> (grade: Outstanding)</p>
       </li>
       <li>
         <div class="when">2008 – 2013</div>
         <h3>Licenciatura (BS) in Physics</h3>
-        <p>Balseiro Institute, Bariloche. Five-year degree; first two years at the University of Buenos Aires. CNEA Scholarship. GPA 8.05/10.</p>
+        <p>Balseiro Institute, Bariloche, Argentina<br>Five-year degree; first two years at the University of Buenos Aires<br>CNEA Scholarship<br>GPA 8.05/10</p>
       </li>
     </ul>
   </section>
 
   <!-- ========================= SKILLS ========================= -->
   <section id="skills">
-    <div class="sec-head"><span class="sec-num">07</span><h2>Skills</h2></div>
+    <div class="sec-head"><span class="sec-num">06</span><h2>Skills</h2></div>
 
 
     <div class="skills">
@@ -736,7 +701,7 @@
       </div>
       <div class="skill">
         <h3>Languages &amp; citizenship</h3>
-        <p>Spanish (native) · English (proficient; TOEFL 106/120; GRE Quant 170/170, Verbal 162/170) · German (advanced; Sprachdiplom II). German and Argentinian citizen.</p>
+        <p>Spanish (native)<br>English (proficient; TOEFL 106/120; GRE Quant 170/170, Verbal 162/170)<br>German (advanced; Sprachdiplom II)<br>German and Argentinian citizen</p>
       </div>
     </div>
   </section>
@@ -746,7 +711,7 @@
     <div class="contact">
       <p class="eyebrow">Get in touch</p>
       <h2>Let's work together</h2>
-      <p>I'm open to new opportunities in data science, machine learning, and applied AI. Email and LinkedIn are the best ways to reach me.</p>
+      <p>I'm open to new opportunities in data science, machine learning, and applied AI.<br>Email and LinkedIn are the best ways to reach me.</p>
       <div class="links">
         <a class="btn primary js-mail" href="#contact" data-u="mmfeole" data-d="gmail.com"><svg><use href="#i-mail"/></svg>mmfeole at gmail dot com</a>
         <a class="btn" href="https://www.linkedin.com/in/mfeole/" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
